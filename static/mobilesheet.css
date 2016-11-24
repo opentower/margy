@@ -1,0 +1,100 @@
+@font-face {
+    font-family: typekeys;
+    src: url("Type Keys Filled.ttf")
+}
+
+body { margin: 0; }
+
+header{
+	width:100%;
+	background:#000000;
+	height:80px;
+	line-height:60px;
+}
+
+.hamburger{
+    background:none;
+    position:absolute;
+    top:0;
+    left:50%;
+    transform: translate(-50%);
+    line-height:50px;
+    padding:15px 15px 0px 15px;
+    color:#FFFFFF;
+    border:0;
+    border-collapse: collapse;
+    font-size:4em;
+    font-weight:bold;
+    cursor:pointer;
+    outline:none;
+    z-index:10000000000000;
+}
+
+.menu {z-index:1000000; font-weight:bold; font-size:2em; width:100%; background:#000000; position:absolute; text-align:center; display: none; }
+.menu ul {margin: 0; padding: 0; list-style-type: none; list-style-image: none; }
+.menu li {display: block; padding:15px 0 15px 0;}
+.menu li:hover {display: block; padding:15px 0 15px 0; }
+.menu ul li a { text-decoration:none;  margin: 0px; color:#FFFFFF;}
+.menu ul li a:hover { color: #FFFFFF; text-decoration:none;}
+.menu a {text-decoration:none; color:white !important;}
+.menu a:hover {text-decoration:none; color:white !important;}
+
+.glyphicon-home{
+  color:white;
+  font-size:1.5em;
+  margin-top:5px;
+  margin:0 auto;
+}
+
+.page {
+    font-family: "georgia";
+    letter-spacing: .2px;
+    background-color: #FFFFFF;
+    color: #000000;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 2em;
+    line-height: 1.3em;
+}
+
+label.browse input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+
+.browse {
+    font-family: georgia;
+    color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 25px;
+    padding: 15px 15px;
+    margin: 2px;
+    background: #000000;
+    display: inline-block;
+}
+
+.b { font-weight: bold; }
+.u { text-decoration: underline; }
+.i { font-style: italic; }
+.mtitle { font-family: "typekeys"; font-size: 4em; text-align: center; margin: 0 0 35px 0; }
+.mtitle a { color: black !important; text-decoration: none; }
+.stitle { font-size: 1.2em !important; text-align: center; margin: 1.3em 0 1.75em 0;}
+.lgap { line-height: .75em }
+.sgap { line-height: 1px; }
+.big { text-align: center; font-size: 1.2em; }
+.question { font-style: italic; margin:0 0 .5em 0; }
+.txtinput { margin: .1em 0 .5em 0; font-size: 1.1em; }
+.less { margin: 0 0 .5em 0; }
+.txt { margin:0 0 1em 0; text-align: justify; }
+.txt ol { margin:.25em 0 .5em 0; }
+.txt li { margin:.25em 0 .5em 0; }
+.font { font-family: "georgia"; font-variant: small-caps; }
+.spaced { text-align: justify; margin: 0 0 1.3em 0; }
+.mouse { cursor: default; }
+
+a:visited { color: #0000FF; text-decoration: none; }
+a:link { color: #0000FF; text-decoration: none; }
+a:hover { color: #0000FF; text-decoration: none; }
+a:active { color: #FF0000; text-decoration: none; }

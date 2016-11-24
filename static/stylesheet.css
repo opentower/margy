@@ -1,0 +1,85 @@
+html { overflow-y: scroll; }
+
+@font-face {
+    font-family: typekeys;
+    src: url("Type Keys Filled.ttf")
+}
+
+body { margin: 0; }
+
+.page {
+    font-family: "georgia";
+    letter-spacing: .2px;
+    background-color: #FFFFFF;
+    color: #000000;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 26%;
+    margin-right: 26%;
+    font-size: 1.1em;
+    line-height: 1.3em;
+}
+
+table.topbar {
+    background-color: #000000;
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+    padding: 20px;
+    width: 100%;
+}
+
+table.topbar td {
+    width: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.button {
+    width: 160px;
+    background-color: #FFFFFF;
+    font-family: "georgia";
+    font-size: 1.1em;
+    font-variant: small-caps;
+    border: 1;
+    border-color: #FFFFFF;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer
+}
+
+.button:active {
+    box-shadow: 0 5px #000000;
+    transform: translateY(1px);
+}
+
+.b { font-weight: bold; }
+.u { text-decoration: underline; }
+.i { font-style: italic; }
+.sig { font-family: "typekeys"; font-size: 2.5em; }
+.mtitle a { color: black !important; text-decoration: none; }
+.mtitle { font-family: "typekeys"; font-size: 4.5em; text-align: center; margin: 0 0 35px 0; }
+.mtitle a { color: black !important; text-decoration: none; }
+.stitle { font-size: 1.25em; text-align: center; margin: 0 0 1.75em 0;}
+.lgap { line-height: .75em }
+.sgap { line-height: 1px; }
+.big { text-align: center; font-size: 1.2em; }
+.question { font-style: italic; margin:0 0 .5em 0; }
+.txtinput { margin: .1em 0 .5em 0; font-size: 1.1em; }
+.less { margin: 0 0 .5em 0; }
+.txt { margin:0 0 1em 0; text-align: justify; }
+.txt ol { margin:.25em 0 .5em 0; }
+.txt li { margin:.25em 0 .5em 0; }
+.font { font-family: "georgia"; font-variant: small-caps; }
+.spaced { text-align: justify; margin: 0 0 1.3em 0; }
+.lspaced { text-align: justify; margin: 0 0 .2em 0; }
+.mouse { cursor: default; }
+.red { color: red; }
+.credits { text-align: center; }
+
+a:visited { color: #0000FF; text-decoration: none; }
+a:link { color: #0000FF; text-decoration: none; }
+a:hover { color: #0000FF; text-decoration: none; }
+a:active { color: #FF0000; text-decoration: none; }

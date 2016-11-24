@@ -1,0 +1,16 @@
+{%extends "index.html" %}
+{% block contents %}
+<p class=b>Instructions</p>
+
+<ol class=txt>
+    <li>Ask your letter-writers to go to <a href="http://margybeta.davidfaraci.com:8080/upload">http://margymail.com/upload</a> and upload your letters of recomendation. They will be asked to input their full name, your full name, and your email address.
+    <li>Once a letter-writer has uploaded their letter, MARGY will send you an automated email, which will include the names input by your letter-writer and your letter&rsquo;s unique code. Each letter is coded with your last name, your letter-writer&rsquo;s last name, and a unique integer. For example, a letter from John Doe for Jane Smith might be coded SmithDoe24. This code will also be your letter&rsquo;s filename (e.g., SmithDoe24.pdf).
+    <li>Gather the email addresses to which your confidential letters of recommendation are to be sent.
+    <li>Go to <a href="http://margybeta.davidfaraci.com:8080/whitelist">http://margymail.com/whitelist</a> and check whether those email addresses are on MARGY&rsquo;s whitelist.
+    <li>If any are <span class=i>not</span>, send an email to <a href="mailto:admin@margybeta.davidfaraci.com">admin@margymail.com</a>, Subject: Whitelist Addition, with those email  addresses and links to official job ads <span class=i>which mention those email addresses.</span>
+    <li>Wait for email confirmation that the addresses have been added to the whitelist.
+    <li>Send an email to <span class=i>your_code</span>@margymail.com (e.g., SmithDoe24@margymail.com). In the body of the email, include the email addresses to which you want that letter sent.
+    <li>MARGY will automatically crawl your email and pull out any email addresses (including the reply-to address, in case it is the school emailing, not you). MARGY will then send emails to all and only the whitelisted email addresses with your letter attached. The body of the email will be a form letter detailing who wrote the letter, whom it is for, and that the letter is coming through MARGY&rsquo;s secure service.
+    <li>You will receive an automated reply from MARGY, confirming that your letters have been sent to those email addresses.
+</ol>
+{% endblock %}

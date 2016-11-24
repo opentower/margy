@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>MARGY</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mobilesheet.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+
+<body>
+<ul>
+<li><a href="/upload"><button class=button>Upload a Letter</button></a>
+<li><a href="/instructions"><button class=button>Instructions</button></a>
+<li><a href="/whitelist"><button class=button>Whitelist</button></a>
+<li><a href="/donate"><button class=button>Donate</button></a>
+<li><a href="/credits"><button class=button>Credits</button></a></td>
+</ul>
+
+<div class=page>
+<p class=mtitle><a href="/">MARGY</a></p>
+<p class=stitle><span class=b>M</span>anaging <span class=b>A</span>cademic <span class=b>R</span>ecommendations <span class=b>G</span>ratis <span class=b>Y</span>ay</p>
+{% block contents %}
+{% endblock %}
+</div>
+</body>
+</html>
