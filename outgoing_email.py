@@ -46,7 +46,7 @@ class EmailUtils:
             body.attach(ptpart)
             body.attach(htmlpart)
             if data:
-                msg=mimemultipart('mixed')
+                msg=MIMEMultipart('mixed')
                 msg['Subject'] = topic
                 msg['From'] = mfrom
                 msg['To'] = to 
@@ -67,7 +67,7 @@ class EmailUtils:
                 return
         else:
             if data:
-                msg=mimemultipart('mixed')
+                msg=MIMEMultipart('mixed')
                 msg['Subject'] = topic
                 msg['From'] = mfrom
                 msg['To'] = to 

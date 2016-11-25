@@ -8,16 +8,14 @@ import os
 import re
 from outgoing_email import EmailUtils
 from flask import Flask, render_template
+from email.parser import Parser
 
 app = Flask(__name__)
 
 print 'Starting custom mail server'
 
 #Regexes for processing email
-# TODO: replace second two of these with python email parser
 email = re.compile(r"[^@ \n]+@[^@ \n]+\.[^@ \n]+")
-emptyline = re.compile(r"\n\n")
-replyto = re.compile(r"reply-to:[^<]+<([^@ \n]+@[^@ \n]+\.[^@ \n]+)>")
 
 class CustomSMTPServer(smtpd.SMTPServer):
 
@@ -26,12 +24,15 @@ class CustomSMTPServer(smtpd.SMTPServer):
         print 'Message addressed from:', mailfrom
         print 'Message addressed to  :', rcpttos
         print 'Message length        :', len(data)
-        header = re.split(emptyline,data,1)[0]
-        body = re.split(emptyline,data,1)[1]
-        matches = re.findall(email,body)
-        maybeReplyadr = re.search(replyto,header)
-        if maybeReplyadr == None: replyadr = str(mailfrom)
-        else: replyadr = str(maybeReplyAdr.group(1))
+        parser = Parser()
+        msg = parser.parsestr(data)
+        matches = [] #initialize matches for accumulation
+        for part in msg.walk(): #get matches only from text/html and text/plain parts of an email
+            if part.get_content_type() in ['text/plain','text/html']:
+                matches = matches + re.findall(email,part.get_payload())
+        matches = list(set(matches)) #deduplicate match list
+        if 'reply-to' in msg: replyadr = msg['reply-to']
+        else: replyadr = str(mailfrom)
         print replyadr
         if 'admin@' in str(rcpttos):
             print "Forwarded"
