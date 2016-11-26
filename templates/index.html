@@ -19,6 +19,8 @@ $(function() {
 </head>
 
 <body>
+<div id="container">
+<div id="body">
 {% if request.MOBILE %}
     <header>
     <button class="hamburger">&#9776;</button>
@@ -54,6 +56,11 @@ $(function() {
 <p class=stitle><span class=b>M</span>anaging <span class=b>A</span>cademic <span class=b>R</span>ecommendations <span class=b>G</span>ratis <span class=b>Y</span>ay</p>
 {% block contents %}
 {% endblock %}
+</div>
+</div>
+<div id="footer">
+<p class=footer>&copy; Copyright 2016 David Faraci</p>
+</div>
 </div>
 </body>
 </html>

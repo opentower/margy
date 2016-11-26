@@ -18,6 +18,7 @@ body { margin: 0; }
     margin-right: 26%;
     font-size: 1.1em;
     line-height: 1.3em;
+    word-wrap: break-word;
 }
 
 table.topbar {
@@ -55,6 +56,26 @@ table.topbar td {
     transform: translateY(1px);
 }
 
+.inbutton {
+    vertical-align: middle;
+    width: 160px;
+    height: 45px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: "georgia";
+    font-size: .9em;
+    font-variant: small-caps;
+    border: 1;
+    border-color: #000000;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer
+}
+
+.inbutton:active {
+    box-shadow: 0 5px #FFFFFF;
+    transform: translateY(1px);
+}
+
 .b { font-weight: bold; }
 .u { text-decoration: underline; }
 .i { font-style: italic; }
@@ -80,8 +101,28 @@ table.topbar td {
 .red { color: red; }
 .green { color: green; }
 .credits { text-align: center; }
+.keys { font-family: typekeys; font-size: 1.1em; }
+.footer { font-size: .8em; text-align: right; }
+.shy { display: none; }
 
 a:visited { color: #0000FF; text-decoration: none; }
 a:link { color: #0000FF; text-decoration: none; }
 a:hover { color: #0000FF; text-decoration: none; }
 a:active { color: #FF0000; text-decoration: none; }
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+#body {
+   padding-bottom:100px;   /* Height of the footer */
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   right: 125px;
+   width: 100%;
+   vertical-align: top;
+   text-align: right;
+   height:100px;   /* Height of the footer */
+}

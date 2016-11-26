@@ -22,8 +22,16 @@ def too_big(error):
     return render_template('toobig.html'), 413
 
 @app.route('/instructions')
-def about():
-    return render_template('instructions.html')
+def instructions():
+    return render_template('quick.html')
+
+@app.route('/detailed')
+def detailed():
+    return render_template('detailed.html')
+
+@app.route('/howto')
+def questions():
+    return render_template('howto.html')
 
 @app.route('/confidentiality')
 def whitelist():

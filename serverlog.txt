@@ -121,3 +121,68 @@ Message length        :5133
 Delivery failed to <p>faraci@gmail.com</p>.Delivery made to faraci@gmail.com.
 Confirmation sent to davidfaraci@hotmail.com.
 End of log entry.
+
+Receiving message from:('209.85.218.54', 33222)
+Message addressed from:faraci@gmail.com
+Message addressed to  :['FaraciTest_IRKAB6YFk@margy.davidfaraci.com', 'FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :2311
+
+FaraciTest_IRKAB6YFk@margy.davidfaraci.com', 'FaraciWars2not in metadata. Failure message sent to faraci@gmail.com.
+End of log entry.
+
+Receiving message from:('209.85.218.49', 35114)
+Message addressed from:faraci@gmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com', 'FaraciTest_IRKAB6YFk@margy.davidfaraci.com']
+Message length        :2314
+
+
+Receiving message from:('209.85.218.43', 35082)
+Message addressed from:faraci@gmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com', 'FaraciTest_IRKAB6YFk@margy.davidfaraci.com']
+Message length        :2316
+
+raciWarnot in metadata. Failure message sent to faraci@gmail.com.
+raciTenot in metadata. Failure message sent to faraci@gmail.com.
+End of log entry.
+
+Receiving message from:('209.85.218.49', 33870)
+Message addressed from:faraci@gmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com', 'FaraciTest_IRKAB6YFk@margy.davidfaraci.com']
+Message length        :2314
+
+Delivery failed to david.faraci@georgetown.edu.Delivery made to david.faraci@georgetown.edu.
+Delivery failed to david.faraci@georgetown.edu".Delivery made to faraci@gmail.com.
+Delivery failed to david.faraci@georgetown.edu.Delivery made to david.faraci@georgetown.edu.
+Delivery failed to david.faraci@georgetown.edu".Delivery made to faraci@gmail.com.
+End of log entry.
+
+Receiving message from:('209.85.218.48', 35280)
+Message addressed from:gmail-noreply@google.com
+Message addressed to  :['admin@margy.davidfaraci.com']
+Message length        :3836
+
+Forwarded.End of log entry.
+
+Receiving message from:('209.85.216.181', 33371)
+Message addressed from:amyeberg@gmail.com
+Message addressed to  :['bergblah_7IUW1W1Di@margy.davidfaraci.com']
+Message length        :2280
+
+Delivery failed to faraci@gmail.com".Delivery made to faraci@gmail.com.
+Confirmation sent to amyeberg@gmail.com.
+End of log entry.
+
+Receiving message from:('209.85.218.48', 34451)
+Message addressed from:faraci@gmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :2319
+
+
+Receiving message from:('209.85.218.52', 33879)
+Message addressed from:faraci@gmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :2319
+
+Delivery failed to david.faraci@georgetown.edu.Delivery made to david.faraci@georgetown.edu.
+Delivery failed to david.faraci@georgetown.edu".Delivery made to faraci@gmail.com.
+End of log entry.

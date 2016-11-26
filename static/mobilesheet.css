@@ -57,6 +57,7 @@ header{
     margin-right: 5%;
     font-size: 2em;
     line-height: 1.3em;
+    word-wrap: break-word;
 }
 
 label.browse input[type="file"] {
@@ -73,6 +74,26 @@ label.browse input[type="file"] {
     margin: 2px;
     background: #000000;
     display: inline-block;
+}
+
+.inbutton {
+    vertical-align: middle;
+    width: 250px;
+    height: 100px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: "georgia";
+    font-size: .9em;
+    font-variant: small-caps;
+    border: 1;
+    border-color: #000000;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer
+}
+
+.inbutton:active {
+    box-shadow: 0 5px #FFFFFF;
+    transform: translateY(1px);
 }
 
 .b { font-weight: bold; }
@@ -92,12 +113,33 @@ label.browse input[type="file"] {
 .txt li { margin:.25em 0 .5em 0; }
 .font { font-family: "georgia"; font-variant: small-caps; }
 .spaced { text-align: justify; margin: 0 0 1.3em 0; }
+.lspaced { text-align: justify; margin: 0 0 .2em 0; }
+.mspaced { text-align: justify; margin: 0 0 .6em 0; }
 .mouse { cursor: default; }
 .red { color: red; }
 .green { color: green; }
 .credits { text-align: center; }
+.footer { font-size: 1.5em; text-align: right; }
+.shy { display: none; }
 
 a:visited { color: #0000FF; text-decoration: none; }
 a:link { color: #0000FF; text-decoration: none; }
 a:hover { color: #0000FF; text-decoration: none; }
 a:active { color: #FF0000; text-decoration: none; }
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+#body {
+   padding-bottom:100px;   /* Height of the footer */
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   right: 25px;
+   width: 100%;
+   vertical-align: top;
+   text-align: right;
+   height:100px;   /* Height of the footer */
+}
