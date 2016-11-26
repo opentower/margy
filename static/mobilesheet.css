@@ -93,6 +93,9 @@ label.browse input[type="file"] {
 .font { font-family: "georgia"; font-variant: small-caps; }
 .spaced { text-align: justify; margin: 0 0 1.3em 0; }
 .mouse { cursor: default; }
+.red { color: red; }
+.green { color: green; }
+.credits { text-align: center; }
 
 a:visited { color: #0000FF; text-decoration: none; }
 a:link { color: #0000FF; text-decoration: none; }

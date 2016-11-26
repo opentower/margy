@@ -1,0 +1,123 @@
+Receiving message from:('65.55.116.45', 62167)
+Message addressed from:davidfaraci@hotmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@208.58.214.213']
+Message length        :5109
+
+File not found. Failure message sent to davidfaraci@hotmail.com.
+End of log entry.
+Receiving message from:('65.55.34.82', 56461)
+Message addressed from:davidfaraci@hotmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :5156
+
+Delivery made to faraci@gmail.com.
+Confirmation sent to davidfaraci@hotmail.com.
+End of log entry.
+Receiving message from:('65.54.190.160', 58254)
+Message addressed from:davidfaraci@hotmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :5199
+
+Delivery made to david.faraci@georgetown.edu.
+Delivery made to faraci@gmail.com.
+Confirmation sent to davidfaraci@hotmail.com.
+End of log entry.
+Receiving message from:('209.85.218.54', 33959)
+Message addressed from:faraci@gmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :2318
+
+Delivery made to david.faraci@georgetown.edu.
+Delivery made to faraci@gmail.com.
+End of log entry.
+
+Receiving message from:('65.55.90.234', 55522)
+Message addressed from:davidfaraci@hotmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :5200
+
+Delivery failed to david.faraci@georgetown.edu.
+Delivery failed to david.faraci@georgetown.edu.
+Delivery made to david.faraci@georgetown.edu.
+Delivery failed to david.faraci@georgetown.edu.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>david.faraci@georgetown.edu</p>.
+Delivery failed to <p>david.faraci@georgetown.edu</p>.
+Delivery failed to <p>david.faraci@georgetown.edu</p>.
+Delivery failed to <p>david.faraci@georgetown.edu</p>.
+Delivery failed to faraci@gmail.com.
+Delivery made to faraci@gmail.com.
+Delivery failed to faraci@gmail.com.
+Delivery failed to faraci@gmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Confirmation sent to davidfaraci@hotmail.com.
+End of log entry.
+
+Receiving message from:('65.54.190.204', 49653)
+Message addressed from:davidfaraci@hotmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@208.58.214.213']
+Message length        :5131
+
+File not found. Failure message sent to davidfaraci@hotmail.com.
+End of log entry.
+
+Receiving message from:('65.55.90.20', 61881)
+Message addressed from:davidfaraci@hotmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :5157
+
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to faraci@gmail.com.
+Delivery made to faraci@gmail.com.
+Delivery failed to faraci@gmail.com.
+Delivery failed to faraci@gmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Confirmation sent to davidfaraci@hotmail.com.
+End of log entry.
+
+Receiving message from:('65.55.90.234', 55186)
+Message addressed from:davidfaraci@hotmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :5200
+
+Delivery failed to david.faraci@georgetown.edu.
+Delivery failed to david.faraci@georgetown.edu.
+Delivery made to david.faraci@georgetown.edu.
+Delivery failed to david.faraci@georgetown.edu.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>faraci@gmail.com</p>.
+Delivery failed to <p>david.faraci@georgetown.edu</p>.
+Delivery failed to <p>david.faraci@georgetown.edu</p>.
+Delivery failed to <p>david.faraci@georgetown.edu</p>.
+Delivery failed to <p>david.faraci@georgetown.edu</p>.
+Delivery failed to faraci@gmail.com.
+Delivery made to faraci@gmail.com.
+Delivery failed to faraci@gmail.com.
+Delivery failed to faraci@gmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+Delivery failed to davidfaraci@hotmail.com.
+
+Receiving message from:('65.55.90.23', 63099)
+Message addressed from:davidfaraci@hotmail.com
+Message addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']
+Message length        :5133
+
+Delivery failed to <p>faraci@gmail.com</p>.Delivery made to faraci@gmail.com.
+Confirmation sent to davidfaraci@hotmail.com.
+End of log entry.

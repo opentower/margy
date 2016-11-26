@@ -1,0 +1,3 @@
+MARGY received a request from this address, but was unable to complete the requested delivery as none of the addresses present are on MARGY's whitelist.
+
+MARGY

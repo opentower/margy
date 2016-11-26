@@ -37,7 +37,7 @@ def f_encrypt(path,data):
 
 #decrypts a file and returns the contents
 def f_decrypt(path, k):
-    f = open(path + '.aes','r')
+    f = open(path,'r')
     data = f.read()
     #it would be more memory efficient to loop over lines or something, but
     #then each line would need to be separately padded to 16 bytes

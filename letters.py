@@ -25,11 +25,11 @@ def too_big(error):
 def about():
     return render_template('instructions.html')
 
-@app.route('/whitelist')
+@app.route('/confidentiality')
 def whitelist():
     with open('static/whitelist.txt', 'r') as f:
         data = f.read()
-    return render_template('whitelist.html',data=data)
+    return render_template('confidentiality.html',data=data)
 
 @app.route('/donate')
 def donate():
@@ -74,8 +74,8 @@ def upload_letter():
                 a = open('metadata.txt', 'a')
                 a.write(metadata)
                 a.close()
+                txtbody = render_template('rec_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,codename=mailto)
                 htmlbody = render_template('rec_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,codename=mailto)
-                body = 'Dear ' + afn + ' ' + aln + ',' + '\r\n' + '\r\n' + 'MARGY has received a confidential letter of recommendation for you from ' + rfn + ' ' + rln + '. ' + 'To have the letter delivered to {email addresses}, send an email to ' + mailto + '@margymail.com' + ' with {email addresses} in the email body. For more detailed instructions, visit http://margymail.com/instructions. If you have further questions, please direct them to admin@margybeta.davidfaraci.com.' + '\r\n' + '\r\n' + 'MARGY'
-                EmailUtils.rich_message('MARGY@margy.davidfaraci.com',aem,'Letter Received',body,htmlbody)
+                EmailUtils.rich_message('MARGY@margy.davidfaraci.com',aem,'Letter Received',txtbody,htmlbody)
                 print "boo"
                 return render_template('success.html',aem=aem,codename=codename)

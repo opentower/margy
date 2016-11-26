@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block contents %}
+<p class=txt>MARGY maintains confidentiality in two ways:
+<ol>
+<li><p class=txt>MARGY encrypts all letters as they are uploaded, so that not even MARGY&rsquo;s administrators can access them. A decryption key is generated and included as part of the mailto code sent to the applicant. <span class=i>That key is not saved anywhere else.</span></p>
+
+<li><p class=txt>MARGY only sends letters of recommendation to email addresses on its whitelist, all of which have been verified as belonging to a hiring entity. The whitelist appears below in its entirety, for purposes of transparency.</p>
+</ol>
+<p class=spaced>Want to see how MARGY does things for yourself? Check out the <a target='_blank' href="https://github.com/davidfaraci/margy">source code</a>.
+
+</p>
+<p class="b less">Current Whitelist:</p>
+
+<!-- The data below is automatically read and displayed from whitelist.txt, which is what the server uses. -->
+
+<p class=txt>
+{{ data }}
+</p>
+{% endblock %}

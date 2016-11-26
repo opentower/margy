@@ -9,7 +9,7 @@ class EmailUtils:
     email_pattern = re.compile('([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+')
     @staticmethod
     def forward_message(data, redirectto):
-        from_adr='MARGY@margybeta.davidfaraci.com'
+        from_adr='MARGY@margy.davidfaraci.com'
 #      Forward a message (we change the From tag in the email headers wich I guess is not perfect, I'm not an email expert)
         msg=email.message_from_string(data)
         try:
@@ -29,7 +29,7 @@ class EmailUtils:
         msg=MIMEText(body);
         msg['Subject'] = topic
         msg['From'] = mfrom
-        msg['To'] = to 
+        msg['To'] = to
 #      Note we are usng port 6625 here as we've changed the Postfix port
         s = smtplib.SMTP('localhost','6625')
         s.sendmail(mfrom, to, msg.as_string())
@@ -49,7 +49,7 @@ class EmailUtils:
                 msg=MIMEMultipart('mixed')
                 msg['Subject'] = topic
                 msg['From'] = mfrom
-                msg['To'] = to 
+                msg['To'] = to
                 msg.attach(body)
                 pdf=MIMEApplication(data,'pdf')
                 msg.attach(pdf)
@@ -60,7 +60,7 @@ class EmailUtils:
             else:
                 body['Subject'] = topic
                 body['From'] = mfrom
-                body['To'] = to 
+                body['To'] = to
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to, body.as_string())
                 s.quit()
@@ -70,7 +70,7 @@ class EmailUtils:
                 msg=MIMEMultipart('mixed')
                 msg['Subject'] = topic
                 msg['From'] = mfrom
-                msg['To'] = to 
+                msg['To'] = to
                 msg.attach(ptpart)
                 pdf=MIMEApplication(data,'pdf')
                 msg.attach(pdf)
