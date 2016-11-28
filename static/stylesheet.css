@@ -104,6 +104,7 @@ table.topbar td {
 .keys { font-family: typekeys; font-size: 1.1em; }
 .footer { font-size: .8em; text-align: right; }
 .shy { display: none; }
+.wl { text-align-last: justify; }
 
 a:visited { color: #0000FF; text-decoration: none; }
 a:link { color: #0000FF; text-decoration: none; }

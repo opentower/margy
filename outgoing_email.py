@@ -37,7 +37,7 @@ class EmailUtils:
         return
 
     @staticmethod
-    def rich_message(mfrom,to,topic,plain,html=None,data=None):
+    def rich_message(mfrom,to,topic,plain,html=None,data=None,name=None):
 #      Send an email with a simple text message
         ptpart = MIMEText(plain,'plain')
         if html:
@@ -52,6 +52,8 @@ class EmailUtils:
                 msg['To'] = to
                 msg.attach(body)
                 pdf=MIMEApplication(data,'pdf')
+                if name: pdf.add_header('Content-Disposition','attachment',filename=name)
+                else: pdf.add_header('Content-Disposition','attachment')
                 msg.attach(pdf)
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to, msg.as_string())
@@ -73,6 +75,8 @@ class EmailUtils:
                 msg['To'] = to
                 msg.attach(ptpart)
                 pdf=MIMEApplication(data,'pdf')
+                if name: pdf.add_header('Content-Disposition','attachment',filename=name)
+                else: pdf.add_header('Content-Disposition','attachment')
                 msg.attach(pdf)
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to, msg.as_string())
