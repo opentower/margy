@@ -50,6 +50,7 @@ def credits():
 @app.route('/letter', methods=['POST'])
 def upload_letter():
     if request.method == 'POST':
+        render_template('progress.html')
         rfn = request.form['rec_fname'].lstrip().rstrip()
         rln = request.form['rec_lname'].lstrip().rstrip()
         afn = request.form['app_fname'].lstrip().rstrip()

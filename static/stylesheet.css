@@ -106,6 +106,16 @@ table.topbar td {
 .shy { display: none; }
 .wl { text-align-last: justify; }
 
+.beta{
+    padding: 10;
+    background-color: black;
+    color: #E8E8E8;
+    margin: 0 0 1em 0;
+    text-align: justify;
+}
+
+.beta a { color: #00CED1 !important; }
+
 a:visited { color: #0000FF; text-decoration: none; }
 a:link { color: #0000FF; text-decoration: none; }
 a:hover { color: #0000FF; text-decoration: none; }
@@ -126,4 +136,15 @@ a:active { color: #FF0000; text-decoration: none; }
    vertical-align: top;
    text-align: right;
    height:100px;   /* Height of the footer */
+}
+
+.ui-progressbar {
+  position: relative;
+}
+.progress-label {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #fff;
 }
