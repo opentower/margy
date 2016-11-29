@@ -1,0 +1,152 @@
+html { overflow-y: scroll; }
+
+@font-face {
+    font-family: typekeys;
+    src: url("Type Keys Filled.ttf")
+}
+
+body { margin: 0; }
+
+.page {
+    font-family: "georgia";
+    letter-spacing: .2px;
+    background-color: #FFFFFF;
+    color: #000000;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 26%;
+    margin-right: 26%;
+    font-size: 1.1em;
+    line-height: 1.3em;
+    word-wrap: break-word;
+}
+
+table.topbar {
+    background-color: #000000;
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+    padding: 20px;
+    width: 100%;
+    line-height: 30px;
+}
+
+table.topbar td {
+    width: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: top;
+    text-align: center;
+    margin: 0 0 0 0;
+}
+
+.button {
+    width: 160px;
+    background-color: #FFFFFF;
+    font-family: "georgia";
+    font-size: 1.1em;
+    font-variant: small-caps;
+    border: 1;
+    border-color: #FFFFFF;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer
+}
+
+.button:active {
+    box-shadow: 0 5px #000000;
+    transform: translateY(1px);
+}
+
+.inbutton {
+    vertical-align: middle;
+    width: 160px;
+    height: 45px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: "georgia";
+    font-size: .9em;
+    font-variant: small-caps;
+    border: 1;
+    border-color: #000000;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer
+}
+
+.inbutton:active {
+    box-shadow: 0 5px #FFFFFF;
+    transform: translateY(1px);
+}
+
+.b { font-weight: bold; }
+.u { text-decoration: underline; }
+.i { font-style: italic; }
+.sig { font-family: "typekeys"; font-size: 2.5em; }
+.mtitle a { color: black !important; text-decoration: none; }
+.mtitle { font-family: "typekeys"; font-size: 4.5em; text-align: center; margin: 0 0 35px 0; }
+.mtitle a { color: black !important; text-decoration: none; }
+.stitle { font-size: 1.25em; text-align: center; margin: 0 0 1.75em 0;}
+.lgap { line-height: .75em }
+.sgap { line-height: 1px; }
+.big { text-align: center; font-size: 1.2em; }
+.question { font-style: italic; margin:0 0 .5em 0; }
+.txtinput { margin: .1em 0 .5em 0; font-size: 1.1em; }
+.less { margin: 0 0 .5em 0; }
+.txt { margin:0 0 1em 0; text-align: justify; }
+.txt ol { margin:.25em 0 .5em 0; }
+.txt li { margin:.25em 0 .5em 0; }
+.font { font-family: "georgia"; font-variant: small-caps; }
+.spaced { text-align: justify; margin: 0 0 1.3em 0; }
+.lspaced { text-align: justify; margin: 0 0 .2em 0; }
+.mspaced { text-align: justify; margin: 0 0 .6em 0; }
+.mouse { cursor: default; }
+.red { color: red; }
+.green { color: green; }
+.credits { text-align: center; }
+.keys { font-family: typekeys; font-size: 1.1em; }
+.footer { font-size: .8em; text-align: right; }
+.shy { display: none; }
+.wl { text-align-last: justify; }
+
+.beta{
+    padding: 10;
+    background-color: black;
+    color: #E8E8E8;
+    margin: 0 0 1em 0;
+    text-align: justify;
+}
+
+.beta a { color: #00CED1 !important; }
+
+a:visited { color: #0000FF; text-decoration: none; }
+a:link { color: #0000FF; text-decoration: none; }
+a:hover { color: #0000FF; text-decoration: none; }
+a:active { color: #FF0000; text-decoration: none; }
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+#body {
+   padding-bottom:100px;   /* Height of the footer */
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   right: 125px;
+   width: 100%;
+   vertical-align: top;
+   text-align: right;
+   height:100px;   /* Height of the footer */
+}
+
+.ui-progressbar {
+  position: relative;
+}
+.progress-label {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #fff;
+}

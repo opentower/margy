@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>MARGY</title>
+<link rel="canonical" href="http://margymail.com">
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+<meta property="og:title" content="MARGY">
+<meta property="og:description" content="Managing Academic Recommendations Gratis Yay">
+<meta property="og:image" content="http://personal.bgsu.edu/~faracid/margylogo.png" />
+<meta property="og:url" content="http://margymail.com" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{% if request.MOBILE %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mobilesheet.css') }}">
+{% else %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet.css') }}">
+{% endif %}
+
+<script>
+$(function() {
+    $( ".hamburger" ).click(function() {
+        $( ".menu" ).slideToggle( "fast" );
+    });
+});
+</script>
+</head>
+
+<body>
+<div id="container">
+<div id="body">
+{% if request.MOBILE %}
+    <header>
+    <button class="hamburger">&#9776;</button>
+    </header>
+
+    <div class="menu">
+    <ul>
+    <a href="/upload"><li>UPLOAD A LETTER</li></a>
+    <a href="/instructions"><li>INSTRUCTIONS</li></a>
+    <a href="/confidentiality"><li>CONFIDENTIALITY</li></a>
+    <a href="/donate"><li>DONATE</li></a>
+    <a href="/credits"><li>CREDITS</li></a>
+    </ul>
+    </div>
+{% else %}
+    <table class=topbar>
+    <tr>
+    <td class=mouse><a href="/upload"><button class=button>Upload a Letter</button></a>
+    <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <a href="/instructions"><button class=button>Instructions</button></a>
+    <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <a href="/confidentiality"><button class=button>Confidentiality</button></a>
+    <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <a href="/donate"><button class=button>Donate</button></a>
+    <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <a href="/credits"><button class=button>Credits</button></a></td>
+    </tr>
+    </table>
+{% endif %}
+
+<div class=page>
+<p class=mtitle><a href="/">MARGY</a></p>
+<p class=stitle><span class=b>M</span>anaging <span class=b>A</span>cademic <span class=b>R</span>ecommendations <span class=b>G</span>ratis <span class=b>Y</span>ay</p>
+{% block contents %}
+{% endblock %}
+</div>
+</div>
+<div id="footer">
+<p class=footer>&copy; Copyright 2016 David Faraci</p>
+</div>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11176955;
+var sc_invisible=1;
+var sc_security="ecf7c796";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="shopify
+analytics ecommerce" href="http://statcounter.com/shopify/"
+target="_blank"><img class="statcounter"
+src="//c.statcounter.com/11176955/0/ecf7c796/1/"
+alt="shopify analytics ecommerce"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+</body>
+</html>
