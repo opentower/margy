@@ -1,0 +1,6 @@
+*.pyc
+letters/
+serverlog.txt
+metadata.txt
+.*
+!.gitignore
