@@ -85,6 +85,6 @@ def upload_letter():
                 a.close()
                 txtbody = render_template('rec_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,codename=mailto)
                 htmlbody = render_template('rec_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,codename=mailto)
-                EmailUtils.rich_message('MARGY@margy.davidfaraci.com',aem,'Letter Received',txtbody,htmlbody)
+                EmailUtils.rich_message('MARGY@margymail.com',aem,'Letter Received',txtbody,htmlbody)
                 print "boo"
                 return render_template('success.html',aem=aem,codename=codename)

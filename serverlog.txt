@@ -663,3 +663,54 @@ Receiving message from:('65.55.116.32', 52290)Message addressed from:davidfaraci
 Delivery made to faraci@gmail.com.
 Confirmation sent to davidfaraci@hotmail.com.
 End of log entry.
+Receiving message from:('65.55.34.212', 63945)Message addressed from:davidfaraci@hotmail.comMessage addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']Message length        :5160
+
+FaraciWars2_GN6OQ0Tnot in metadata. Failure message sent to davidfaraci@hotmail.com.
+End of log entry.
+Receiving message from:('65.55.90.216', 61498)Message addressed from:davidfaraci@hotmail.comMessage addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']Message length        :5160
+
+FaraciWars2_GN6OQ0Tnot in metadata. Failure message sent to davidfaraci@hotmail.com.
+End of log entry.
+Receiving message from:('65.54.190.89', 51264)Message addressed from:davidfaraci@hotmail.comMessage addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']Message length        :5160
+
+FaraciWars2_GN6OQ0Tnot in metadata. Failure message sent to davidfaraci@hotmail.com.
+End of log entry.
+Receiving message from:('65.54.61.80', 61275)Message addressed from:davidfaraci@hotmail.comMessage addressed to  :['FaraciWars2_GN6OQ0TWk@margy.davidfaraci.com']Message length        :5158
+
+FaraciWars2_GN6OQnot in metadata. Failure message sent to davidfaraci@hotmail.com.
+End of log entry.
+Receiving message from:('65.55.90.170', 51095)Message addressed from:davidfaraci@hotmail.comMessage addressed to  :['FaraciWars2_GN6OQ0TWk@margymail.com']Message length        :4955
+
+Delivery made to faraci@gmail.com.
+Confirmation sent to davidfaraci@hotmail.com.
+End of log entry.
+Receiving message from:('209.85.218.47', 36109)Message addressed from:faraci@gmail.comMessage addressed to  :['FaraciWars2_GN6OQ0TWk@margymail.com']Message length        :2271
+
+Delivery made to faraci@gmail.com.
+Delivery failed to david.faraci@georgetown.edu
+.
+End of log entry.
+Receiving message from:('209.85.218.42', 32913)Message addressed from:gmail-noreply@google.comMessage addressed to  :['admin@margymail.com']Message length        :3752
+
+Forwarded.
+End of log entry.
+Receiving message from:('111.251.99.240', 1884)Message addressed from:dlh@email.cta.cq.cntMessage addressed to  :['gogo@linwayedm.com.tw']Message length        :415
+
+File not found. Failure message sent to dlh@email.cta.cq.cnt.
+End of log entry.
+Receiving message from:('111.251.98.226', 4058)Message addressed from:dlh@email.cta.cq.cntMessage addressed to  :['gogo@linwayedm.com.tw']Message length        :396
+
+File not found. Failure message sent to dlh@email.cta.cq.cnt.
+End of log entry.
+Receiving message from:('209.85.218.49', 36437)Message addressed from:faraci@gmail.comMessage addressed to  :['admin@margymail.com']Message length        :2172
+
+Forwarded.
+End of log entry.
+Receiving message from:('65.55.34.211', 52647)Message addressed from:davidfaraci@hotmail.comMessage addressed to  :['admin@margymail.com']Message length        :4900
+
+Forwarded.
+End of log entry.
+Receiving message from:('1.162.174.103', 2095)Message addressed from:dlh@email.cta.cq.cntMessage addressed to  :['gogo@linwayedm.com.tw']Message length        :393
+
+File not found. Failure message sent to dlh@email.cta.cq.cnt.
+End of log entry.

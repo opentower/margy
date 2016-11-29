@@ -9,7 +9,7 @@ class EmailUtils:
     email_pattern = re.compile('([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+')
     @staticmethod
     def forward_message(data, redirectto):
-        from_adr='MARGY@margy.davidfaraci.com'
+        from_adr='MARGY@margymail.com'
 #      Forward a message (we change the From tag in the email headers wich I guess is not perfect, I'm not an email expert)
         msg=email.message_from_string(data)
         try:

@@ -1,7 +1,8 @@
-<span class=shy>&shy;</span><html>
+<html>
 <head>
 <title>MARGY</title>
 <link rel="canonical" href="http://margymail.com:8080">
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
 <meta property="og:title" content="MARGY">
 <meta property="og:description" content="Managing Academic Recommendations Gratis Yay">
 <meta property="og:image" content="http://personal.bgsu.edu/~faracid/margylogo.png" />
@@ -12,7 +13,6 @@
 {% else %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet.css') }}">
 {% endif %}
-<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
 
 <script>
 $(function() {
@@ -67,5 +67,24 @@ $(function() {
 <p class=footer>&copy; Copyright 2016 David Faraci</p>
 </div>
 </div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11176955;
+var sc_invisible=1;
+var sc_security="ecf7c796";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="shopify
+analytics ecommerce" href="http://statcounter.com/shopify/"
+target="_blank"><img class="statcounter"
+src="//c.statcounter.com/11176955/0/ecf7c796/1/"
+alt="shopify analytics ecommerce"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
 </body>
 </html>

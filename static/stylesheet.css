@@ -27,6 +27,7 @@ table.topbar {
     border-collapse: collapse;
     padding: 20px;
     width: 100%;
+    line-height: 30px;
 }
 
 table.topbar td {
@@ -37,6 +38,7 @@ table.topbar td {
     padding-bottom: 5px;
     vertical-align: top;
     text-align: center;
+    margin: 0 0 0 0;
 }
 
 .button {
