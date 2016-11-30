@@ -13,10 +13,12 @@
     {% else %}
         <p><input type="file" name="letter" id="letter" required><p>
     {% endif %}
-    <input class="txtinput font" type="submit" value="Submit" name="submit" id="sumbit">
+    <button type="submit" class=upbutton>Submit</button>
 </form>
+<br>
 {% block progress %}
 {% endblock %}
 {% block status %}
 {% endblock %}
+<div class=beta>Please check your spam folder before submitting a bug report!</div>
 {% endblock %}

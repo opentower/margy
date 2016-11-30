@@ -96,9 +96,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
                                 toedu = render_template('delivery.html',rfn=rfn,rln=rln,afn=afn,aln=aln)
                             sentto = ""
                             failed = []
-                            print matches
                             for match in matches + [replyadr]:
-                                print match
                                 wl = open('static/whitelist.txt')
                                 for line in wl:
                                     if ( match.lower() == line.rstrip().lower() and match not in sentto.strip().lower() ):
@@ -110,7 +108,6 @@ class CustomSMTPServer(smtpd.SMTPServer):
                                     else:
                                         failed.append(match)
                                 wl.close()
-                            print failed
                             fsent = ""
                             for miss in failed:
                                 if ( miss.lower() != replyadr.lower() and miss.lower() not in sentto.strip().lower() and miss.lower() not in fsent.strip().lower() ):

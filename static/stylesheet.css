@@ -78,6 +78,26 @@ table.topbar td {
     transform: translateY(1px);
 }
 
+.upbutton {
+    vertical-align: middle;
+    width: 100px;
+    height: 45px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: "georgia";
+    font-size: 1em;
+    font-variant: small-caps;
+    border: 1;
+    border-color: #000000;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer
+}
+
+.upbutton:active {
+    box-shadow: 0 5px #FFFFFF;
+    transform: translateY(1px);
+}
+
 .b { font-weight: bold; }
 .u { text-decoration: underline; }
 .i { font-style: italic; }

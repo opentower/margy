@@ -4,3 +4,6 @@ serverlog.txt
 metadata.txt
 .*
 !.gitignore
+tmux-servers
+old/
+mail.*
