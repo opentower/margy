@@ -1,5 +1,5 @@
 Dear {{ afn }} {{ aln }},
 
-MARGY has received a confidential letter of recommendation for you from {{ rfn }} {{ rln }}. To have the letter delivered to {email addresses}, send an email to {{ mailto }}@margymail.com with {email addresses} in the email body. For more detailed instructions, visit http://margymail.com/instructions. If you have further questions, please direct them to admin@margymail.com.
+MARGY has received a confidential letter of recommendation for you from {{ rfn }} {{ rln }}. To have the letter delivered to {email addresses}, send an email to {{ codename }}@margymail.com with {email addresses} in the email body. For more detailed instructions, visit http://margymail.com/instructions. If you have further questions, please direct them to admin@margymail.com.
 
 MARGY

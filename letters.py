@@ -5,7 +5,7 @@ from outgoing_email import EmailUtils
 from encryption import f_encrypt
 import os, sys, re
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 Mobility(app)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
@@ -51,6 +51,14 @@ def thanks():
 def credits():
     return render_template('credits.html')
 
+@app.route('/logo')
+def logo():
+    return app.send_static_file('margylogo.png')
+
+@app.route('/signature')
+def signature():
+    return app.send_static_file('signature.png')
+
 @app.route('/letter', methods=['POST'])
 def upload_letter():
     if request.method == 'POST':
@@ -73,7 +81,7 @@ def upload_letter():
                 num += 1
         if num != 0:
             codename += str(num)
-        codedfilename = '/home/dev/LettersC-Flask/letters/' + codename + ".pdf"
+        codedfilename = '/home/margy/letters/' + codename + ".pdf"
         metadata = codename + ' ' + rfncode + ' ' + rlncode + ' ' + afncode + ' ' + alncode + ' ' + aem + '\r\n'
         f = request.files['letter']
         if f.mimetype != 'application/pdf':
