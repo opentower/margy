@@ -7,3 +7,4 @@ metadata.txt
 tmux-servers
 old/
 mail.*
+venv/

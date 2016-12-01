@@ -81,7 +81,7 @@ def upload_letter():
                 num += 1
         if num != 0:
             codename += str(num)
-        codedfilename = '/home/margy/letters/' + codename + ".pdf"
+        codedfilename = 'letters/' + codename + ".pdf"
         metadata = codename + ' ' + rfncode + ' ' + rlncode + ' ' + afncode + ' ' + alncode + ' ' + aem + '\r\n'
         f = request.files['letter']
         if f.mimetype != 'application/pdf':
