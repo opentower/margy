@@ -25,7 +25,7 @@ email = re.compile(emailchar + r"+@" + emailchar + r"+\." + emailchar + r"+")
 #-address with capture group for the recipient
 recip = re.compile(r"(" + emailchar + r"+)@" + emailchar + r"+\." + emailchar + r"+")
 
-class CustomSMTPServer(smtpd.SMTPServer):
+class MargySMTPServer(smtpd.SMTPServer):
 
     def process_message(self, peer, mailfrom, rcpttos, data):
         log = open('serverlog.txt', 'a') #The log will be removed once MARGY is out of beta.
@@ -98,8 +98,11 @@ class CustomSMTPServer(smtpd.SMTPServer):
 				try:
 				   PyPDF2.PdfFileReader(maybepdf)
 				except PyPDF2.utils.PdfReadError:
-				   print "Abort, corrupt pdf!"
+				   print "Abort, corrupt pdf!" 
+				   #insert email explaining that this is not the correct keycode here.
+				   maybepdf.close()
 				else:
+				   maybepdf.close()
                                    rfn = array[1].replace('_', ' ')
                                    rln = array[2].replace('_', ' ')
                                    afn = array[3].replace('_', ' ')
@@ -148,7 +151,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
         return
 
 #Listen to port 25 ( 0.0.0.0 can be replaced by the ip of your server but that will work with 0.0.0.0 )
-server = CustomSMTPServer(('0.0.0.0', 25), None)
+server = MargySMTPServer(('0.0.0.0', 25), None)
 
 # Wait for incoming emails
 asyncore.loop()
