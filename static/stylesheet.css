@@ -159,14 +159,3 @@ a:active { color: #FF0000; text-decoration: none; }
    text-align: right;
    height:100px;   /* Height of the footer */
 }
-
-.ui-progressbar {
-  position: relative;
-}
-.progress-label {
-  position: absolute;
-  left: 50%;
-  top: 4px;
-  font-weight: bold;
-  text-shadow: 1px 1px 0 #fff;
-}

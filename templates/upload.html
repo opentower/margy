@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% block contents %}
 <p class=spaced>Use the form below to upload your confidential letter of recommendation. The system accepts <span class=u>only PDFs</span> of no more than 16 MB.</p>
-<form action="/letter" method="post" enctype="multipart/form-data">
+<form id=upload action="/letter" method="post" enctype="multipart/form-data">
     <p>Letter-Writer&rsquo;s First and Last Name:<br>
         <input class=txtinput type=text name="rec_fname" id="rec_fname" required>&nbsp;&nbsp;<input class=txtinput type=text name="rec_lname" id="rec_lname" required></p>
     <p>Applicant&rsquo;s First and Last Name:<br>
@@ -16,10 +16,9 @@
     <button type="submit" class=upbutton>Submit</button>
 </form>
 <br>
-{% block progress %}
-{% endblock %}
 {% block status %}
 {% endblock %}
+<br>
 <div class=beta>We are currently working on avoiding spam filters. If an email from us goes to your spam filter, and you are using a service other than those listed below, please email us as at <a href="mailto:admin@margymail.com">admin@margymail.com</a>.<br><br>
 Known spam problem: HOTMAIL</div>
 {% endblock %}
