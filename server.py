@@ -77,7 +77,6 @@ def corrupt_file_handler(replyadr,cfn,log):
     with app.app_context():
         corrupttxt = render_template('corrupt_failure.txt',file=cfn)
         corrupt = render_template('corrupt_failure.html',file=cfn)
-    maybepdf.close()
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',corrupttxt,corrupt)
     log.write('Corrupt file. Failure message sent to ' + replyadr + '.\r\n')
     return
@@ -176,6 +175,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                                     PyPDF2.PdfFileReader(maybepdf)
                                 except PyPDF2.utils.PdfReadError:
                                     corrupt_file_handler(replyadr,cfn,log)
+                                    maybepdf.close()
                                 else:
                                     maybepdf.close()
                                     rfn = array[1].replace('_', ' ') #assigns the items of the metadata list to variables; this is recommender's first name
