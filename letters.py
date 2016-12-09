@@ -59,9 +59,13 @@ def logo():
 def signature():
     return app.send_static_file('signature.png')
 
-@app.route('/wheel') #static URL for loading gif
+@app.route('/wheel') #static URL for wheel gif
 def wheel():
     return app.send_static_file('wheel.gif')
+
+@app.route('/pulse') #static URL for pulse gif
+def pulse():
+    return app.send_static_file('pulse.gif')
 
 @app.route('/letter', methods=['POST'])
 def upload_letter():
