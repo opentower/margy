@@ -153,6 +153,7 @@ label.browse input[type="file"] {
 .footer { font-size: 1.5em; text-align: right; }
 .shy { display: none; }
 .wl { text-align-last: justify; }
+.load { visibility: hidden; }
 
 a:visited { color: #0000FF; text-decoration: none; }
 a:link { color: #0000FF; text-decoration: none; }

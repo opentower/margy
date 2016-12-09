@@ -127,6 +127,7 @@ table.topbar td {
 .footer { font-size: .8em; text-align: right; }
 .shy { display: none; }
 .wl { text-align-last: justify; }
+.load { height: 45px; vertical-align: middle; display: none; }
 
 .beta{
     padding: 10;

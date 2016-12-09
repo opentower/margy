@@ -13,12 +13,12 @@
     {% else %}
         <p><input type="file" name="letter" id="letter" required><p>
     {% endif %}
-    <button type="submit" class=upbutton>Submit</button>
+    <span class=sgap><br></span>
+    <button type="submit" class=upbutton>Submit</button>&nbsp;&nbsp;&nbsp;<img class=load src="http://margymail.com/wheel">
 </form>
-<br>
 {% block status %}
 {% endblock %}
-<br>
+<br><br>
 <div class=beta>We are currently working on avoiding spam filters. If an email from us goes to your spam filter, and you are using a service other than those listed below, please email us as at <a href="mailto:admin@margymail.com">admin@margymail.com</a>.<br><br>
 Known spam problem: HOTMAIL</div>
 {% endblock %}

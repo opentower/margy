@@ -5,7 +5,7 @@
 <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
 <meta property="og:title" content="MARGY">
 <meta property="og:description" content="Managing Academic Recommendations Gratis Yay">
-<meta property="og:image" content="http://personal.bgsu.edu/~faracid/margylogo.png" />
+<meta property="og:image" content="http://margymail.com/logo" />
 <meta property="og:url" content="http://margymail.com" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -14,6 +14,14 @@
 {% else %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet.css') }}">
 {% endif %}
+
+<script>
+$(function() {
+    $( "#upload" ).submit(function() {
+        $( ".load" ).show();
+    });
+});
+</script>
 
 <script>
 $(function() {

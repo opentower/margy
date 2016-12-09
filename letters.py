@@ -65,6 +65,7 @@ def wheel():
 
 @app.route('/letter', methods=['POST'])
 def upload_letter():
+    render_template('loading.html')
     if request.method == 'POST':
         rfn = request.form['rec_fname'].lstrip().rstrip() #assigns input text to variables; this is Recommender's First Name
         rln = request.form['rec_lname'].lstrip().rstrip() #Recommender's Last Name
