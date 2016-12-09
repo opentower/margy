@@ -16,15 +16,15 @@ If you're interested in understanding how MARGY works, you can view the source c
 
 GitHub Contents
 ---------------
-static (folder) - contains files used by all parts of the site, such as logos and CSS stylesheets, as well as the whitelist
-templates (folder) - contains the html templates for the different site pages as well as the various emails MARGY sends
-.gitignore - tells the system which files not to share publicly (e.g., the folder with all the letters in it!)
-LICENSE.txt - a statement of MARGY's copyright
-README.txt - this file
-encryption.py - contains the functions letters.py uses to encrypt files during upload and server.py uses to decrypt files for delivery
-letters.py - the code for the MARGY website (more below)
-outgoing_email.py - contains the functions that server.py uses to send email
-server.py - the code for the MARGY email system (more below)
+  static (folder) - contains files used by all parts of the site, such as logos and CSS stylesheets, as well as the whitelist
+  templates (folder) - contains the html templates for the different site pages as well as the various emails MARGY sends
+  .gitignore - tells the system which files not to share publicly (e.g., the folder with all the letters in it!)
+  LICENSE.txt - a statement of MARGY's copyright
+  README.txt - this file
+  encryption.py - contains the functions letters.py uses to encrypt files during upload and server.py uses to decrypt files for delivery
+  letters.py - the code for the MARGY website (more below)
+  outgoing_email.py - contains the functions that server.py uses to send email
+  server.py - the code for the MARGY email system (more below)
 
 
 LETTERS.PY
