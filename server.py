@@ -39,7 +39,7 @@ def whitelist_handler(replyadr):
         EmailUtils.text_message('MARGY@margymail.com',replyadr,'Already on Whitelist','A request was received to add this email address to MARGY\'s whitelist, but the address is already on the list. Thank you for helping beta test MARGY!')
         return
 
-#Forwards emails sent to admin@margymail.com to faraci@gmail.com
+#Forwards emails sent to admin@margymail.com or postmaster@margymail.com to faraci@gmail.com
 def admin_handler(data,log):
     EmailUtils.forward_message(data,'faraci@gmail.com')
     log.write('Forwarded.\r\n')
@@ -145,7 +145,7 @@ class MargySMTPServer(smtpd.SMTPServer):
             if recipient.lower() == 'whitelist': #for emails sent to whitelist@margymail.com (beta only)
                 whitelist_handler(replyadr)
             else:
-                if recipient.lower() == 'admin': #for emails sent to admin@margymail.com
+                if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' ): #for emails sent to admin@ or postmaster@ or abuse@margymail.com
                     admin_handler(data,log)
                 else:
                     if len(recipient) < 11: #makes sure the mailto code isn't too short
