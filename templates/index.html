@@ -25,6 +25,14 @@ $(function() {
 
 <script>
 $(function() {
+    $(document).ready(function(){
+        $( ".load" ).hide();
+    });
+});
+</script>
+
+<script>
+$(function() {
     $( ".hamburger" ).click(function() {
         $( ".menu" ).slideToggle( "fast" );
     });
