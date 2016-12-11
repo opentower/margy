@@ -35,7 +35,7 @@ def newletter():
     return render_template('upload.html')
 ```
 
-says that when someone goes to margymail.com/upload, the system should render the `upload.html` template (which is an extension of the `index.html` template). Most of `letters.py` is just short bits like this. The exception is the `@app.route('/letter')`, which controls uploading (when someone clicks Submit on margymail.com/upload, it triggers `/letter`). It takes the information provided by the uploader and adds it to `metadata.txt` (not public). It then creates a unique file name for the letter, encrypts it using functions from `encryption.py`, and saves it to the letters folder (also not public). It then renders appropriate templates (e.g., saying that a letter has been successfully uploaded).
+says that when someone goes to margymail.com/upload, the system should render the `upload.html` template (which is an extension of the `index.html` template). Most of `letters.py` is just short bits like this. The exception is `@app.route('/letter')`, which controls uploading (when someone clicks Submit on margymail.com/upload, it triggers `/letter`). It takes the information provided by the uploader and adds it to `metadata.txt` (not public). It then creates a unique file name for the letter, encrypts it using functions from `encryption.py`, and saves it to the letters folder (also not public). It then renders appropriate templates (e.g., saying that a letter has been successfully uploaded).
 
 
 ####SERVER.PY
