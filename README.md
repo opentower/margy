@@ -27,7 +27,7 @@ If you're interested in understanding how MARGY works, you can view the source c
 
 
 ####LETTERS.PY
-`letters.py` controls what happens when someone visits any page on the MARGY site. It is based on a Python web development system called [Flask](http://flask.pocoo.org/). Most of what it does is take URL requests and deliver templates. The core page of the MARGY site is the `index.html` template, which contains the menu and the MARGY title. Each of the full pages you see adds to `index.html` with an extension template, and these extension templates are rendered by `letters.py`. For example
+`letters.py` controls what happens when someone visits any page on the MARGY site. It is based on [Flask](http://flask.pocoo.org/), a Python web development system. Most of what it does is take URL requests and deliver templates. The core page of the MARGY site is the `index.html` template, which contains the menu and the MARGY title. Each of the full pages you see adds to `index.html` with an extension template, and these extension templates are rendered by `letters.py`. For example
 
 ```
 @app.route('/upload')
@@ -44,9 +44,9 @@ says that when someone goes to margymail.com/upload, the system should render th
 When an email comes in, `process_message` does the following:
 1. Reads the email (including body and headers) and saves that information for future use.
 2. Checks the body of the message for email addresses.
-3. If the email is directed to admin@margymail.com, it forwards it to me.
+3. If the email is directed to [admin@margymail.com](mailto:admin@margymail.com), [postmaster@margymail.com](mailto:postmaster@margymail.com) or [abuse@margymail.com](mailto:abuse@margymail.com) it forwards it to me.
 4. Checks whether the system has metadata associated with the incoming mailto code. If not, it sends an error reply.
 5. Decrypts the file associated with that metadata (using the key found in the mailto code) and flags it for attachment.
 6. Checks the email addresses from the incoming email against whitelist.txt. If there are no matches, it sends an error reply.
 7. Sends an email with the decrypted letter as an attachment to each whitelisted address.
-8. Sends a confirmation email to the applicant and the reply-to address (if different).  
+8. Sends a confirmation email to the applicant and the reply-to address (if different).
