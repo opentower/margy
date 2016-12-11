@@ -27,7 +27,7 @@ If you're interested in understanding how MARGY works, you can view the source c
 
 
 ####LETTERS.PY
-`letters.py` controls what happens when someone visits any page on the MARGY site. It is based on a Python web development system called [Flask](http://flask.pocoo.org/). Most of what it does is take URL requests and deliver templates. The core page of the MARGY site is the index.html template, which contains the menu and the MARGY title. Each of the full pages you see adds to index.html with an extension template, and these extension templates are rendered by letters.py. For example
+`letters.py` controls what happens when someone visits any page on the MARGY site. It is based on a Python web development system called [Flask](http://flask.pocoo.org/). Most of what it does is take URL requests and deliver templates. The core page of the MARGY site is the `index.html` template, which contains the menu and the MARGY title. Each of the full pages you see adds to `index.html` with an extension template, and these extension templates are rendered by `letters.py`. For example
 
 ```
 @app.route('/upload')
@@ -35,13 +35,13 @@ def newletter():
     return render_template('upload.html')
 ```
 
-says that when someone goes to margymail.com/upload, the system should render the upload.html template (which is an extension of the index.html template). Most of letters.py is just short bits like this. The exception is the `@app.route` for /letters, which controls uploading (when someone clicks Submit on /upload, it triggers /letters). It takes the information provided by the uploader and adds it to `metadata.txt` (not public). It then creates a unique file name for the letter, encrypts it using functions from `encryption.py`, and saves it to the letters folder (also not public). It then renders appropriate templates (e.g., saying that a letter has been successfully uploaded).
+says that when someone goes to margymail.com/upload, the system should render the `upload.html` template (which is an extension of the `index.html` template). Most of `letters.py` is just short bits like this. The exception is the `@app.route` for /letters, which controls uploading (when someone clicks Submit on /upload, it triggers /letters). It takes the information provided by the uploader and adds it to `metadata.txt` (not public). It then creates a unique file name for the letter, encrypts it using functions from `encryption.py`, and saves it to the letters folder (also not public). It then renders appropriate templates (e.g., saying that a letter has been successfully uploaded).
 
 
 ####SERVER.PY
-Server.py controls what happens when an email is sent to any @margymail.com address. If you look at the file, after some initial imports and definitions, you'll see a series of email handlers. These are functions that the main function, `process_message`, uses to send the right email for the right context.
+`server.py` controls what happens when an email is sent to any @margymail.com address. If you look at the file, after some initial imports and definitions, you'll see a series of email handlers. These are functions that the main function, `process_message`, uses to send the right email for the right context.
 
-When an email comes in, process_message does the following:
+When an email comes in, `process_message` does the following:
 1. Reads the email (including body and headers) and saves that information for future use.
 2. Checks the body of the message for email addresses.
 3. If the email is directed to admin@margymail.com, it forwards it to me.
