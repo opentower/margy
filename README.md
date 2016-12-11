@@ -42,5 +42,6 @@ says that when someone goes to margymail.com/upload, the system should render th
 `server.py` controls what happens when an email is sent to any @margymail.com address. If you look at the file, after some initial imports and definitions, you'll see a series of email handlers. These are functions that the main function, `process_message`, uses to send the right email for the right context.
 
 When an email comes in, `process_message` does the following:
+
 1. test
 2. test against
