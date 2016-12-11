@@ -15,15 +15,15 @@ For comments and general suggestions (or if you find a bug but would prefer not 
 If you're interested in understanding how MARGY works, you can view the source code here on GitHub. The following is a brief overview of what you'll find here. The two main files, `letters.py` and `server.py` have been heavily commented to ease understanding for those interested but without much relevant experience.
 
 ###GitHub Contents
-- static (folder) - contains files used by all parts of the site, such as logos and CSS stylesheets, as well as the whitelist
-- templates (folder) - contains the html templates for the different site pages as well as the various emails MARGY sends
-- .gitignore - tells the system which files not to share publicly (e.g., the folder with all the letters in it!)
-- LICENSE.txt - a statement of MARGY's copyright
-- README.md - this file
-- encryption.py - contains the functions letters.py uses to encrypt files during upload and server.py uses to decrypt files for delivery
-- letters.py - the code for the MARGY website (more below)
-- outgoing_email.py - contains the functions that server.py uses to send email
-- server.py - the code for the MARGY email system (more below)
+- `static (folder)` contains files used by all parts of the site, such as logos and CSS stylesheets, as well as the whitelist
+- `templates (folder)` contains the html templates for the different site pages as well as the various emails MARGY sends
+- `.gitignore` tells the system which files not to share publicly (e.g., the folder with all the letters in it!)
+- `LICENSE.txt` contains a statement of MARGY's copyright
+- `README.md` contains this README
+- `encryption.py` contains the functions `letters.py` uses to encrypt files during upload and `server.py` uses to decrypt files for delivery
+- `letters.py` contains the code for the MARGY website (more below)
+- `outgoing_email.py` contains the functions that `server.py` uses to send email
+- `server.py` contains the code for the MARGY email system (more below)
 
 
 ####LETTERS.PY
@@ -35,11 +35,11 @@ def newletter():
     return render_template('upload.html')
 ```
 
-says that when someone goes to margymail.com/upload, the system should render the upload.html template (which is an extension of the index.html template). Most of letters.py is just short bits like this. The exception is the `@app.route` for /letters, which controls uploading (when someone clicks Submit on /upload, it triggers /letters). It takes the information provided by the uploader and adds it to the metadata.txt file (not public). It then creates a unique file name for the letter, encrypts it using functions from encryption.py, and saves it to the letters folder (also not public). It then renders appropriate templates (e.g., saying that a letter has been successfully uploaded).
+says that when someone goes to margymail.com/upload, the system should render the upload.html template (which is an extension of the index.html template). Most of letters.py is just short bits like this. The exception is the `@app.route` for /letters, which controls uploading (when someone clicks Submit on /upload, it triggers /letters). It takes the information provided by the uploader and adds it to `metadata.txt` (not public). It then creates a unique file name for the letter, encrypts it using functions from `encryption.py`, and saves it to the letters folder (also not public). It then renders appropriate templates (e.g., saying that a letter has been successfully uploaded).
 
 
 ####SERVER.PY
-Server.py controls what happens when an email is sent to any @margymail.com address. If you look at the file, after some initial imports and definitions, you'll see a series of email handlers. These are functions that the main function, process_message, uses to send the right email for the right context.
+Server.py controls what happens when an email is sent to any @margymail.com address. If you look at the file, after some initial imports and definitions, you'll see a series of email handlers. These are functions that the main function, `process_message`, uses to send the right email for the right context.
 
 When an email comes in, process_message does the following:
 1. Reads the email (including body and headers) and saves that information for future use.
