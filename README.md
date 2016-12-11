@@ -48,6 +48,6 @@ When an email comes in, `process_message` does the following:
 3. If the email is directed to abuse@, postmaster@ or admin@margymail.com, it forwards it to me.
 4. Checks whether the system has metadata associated with the incoming mailto code. If not, it sends an error reply.
 5. Decrypts the file associated with that metadata (using the key found in the mailto code) and flags it for attachment.
-6. Checks the email addresses from the incoming email against whitelist.txt. If there are no matches, it sends an error reply.
+6. Checks the email addresses from the incoming email against `whitelist.txt`. If there are no matches, it sends an error reply.
 7. Sends an email with the decrypted letter as an attachment to each whitelisted address.
 8. Sends a confirmation email to the applicant and the reply-to address (if different).
