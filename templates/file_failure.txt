@@ -1,3 +1,3 @@
-MARGY received a request from this address for delivery of file {{ cfn }}, but there is no such file on the server.
+MARGY received a request from this address for delivery of file {{ cfn }}, but there is no such file on the server. For questions, or if you believe you received this email in error, please contact admin@margymail.com.
 
 MARGY
