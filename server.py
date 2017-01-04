@@ -145,7 +145,7 @@ class MargySMTPServer(smtpd.SMTPServer):
             if recipient.lower() == 'whitelist': #for emails sent to whitelist@margymail.com (beta only)
                 whitelist_handler(replyadr)
             else:
-                if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' ): #for emails sent to admin@ or postmaster@ or abuse@margymail.com
+                if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or MARGY@margymail.com
                     admin_handler(data,log)
                 else:
                     if len(recipient) < 11: #makes sure the mailto code isn't too short
