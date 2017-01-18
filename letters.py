@@ -11,9 +11,12 @@ auth = HTTPBasicAuth()
 Mobility(app)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #sets max size of 16 MB for uploads
 
-users = {
-    "test": "test",
-}
+users = {}
+fileloc = '/home/git/margy/login'
+with open(fileloc) as i:
+     for line in i:
+          (key, val) = line.split()
+          users[key] = val
 
 @app.route('/') #handles requests for http://margymail.com
 def home():
