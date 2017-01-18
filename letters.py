@@ -60,33 +60,17 @@ def thanks():
 def credits():
     return render_template('credits.html')
 
-@app.route('/logo') #static URL for the MARGY logo
-def logo():
-    return app.send_static_file('margylogo.png')
-
-@app.route('/signature') #static URL for the MARGY signature
-def signature():
-    return app.send_static_file('signature.png')
-
-@app.route('/wheel') #static URL for wheel gif
-def wheel():
-    return app.send_static_file('wheel.gif')
-
-@app.route('/pulse') #static URL for pulse gif
-def pulse():
-    return app.send_static_file('pulse.gif')
-
-@app.route('/storage/<path:path>') #static URL for misc storage directory
+@app.route('/storage/<path:path>') #URL handler for public storage directory
 def storage(path):
     return send_from_directory('storage', path)
 
-@auth.get_password #password protection for private files
+@auth.get_password #password protection for private storage directory
 def get_pw(username):
     if username in users:
         return users.get(username)
     return None
 
-@app.route('/private/<path:path>') #static URL for private storage directory
+@app.route('/private/<path:path>') #URL handler for private storage directory
 @auth.login_required
 def private(path):
     return send_from_directory('private', path)
