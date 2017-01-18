@@ -8,3 +8,4 @@ tmux-servers
 old/
 mail.*
 venv/
+storage/

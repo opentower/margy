@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, send_from_directory, g
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 from outgoing_email import EmailUtils
@@ -66,6 +66,10 @@ def wheel():
 @app.route('/pulse') #static URL for pulse gif
 def pulse():
     return app.send_static_file('pulse.gif')
+
+@app.route('/storage/<path:path>') #static URL for misc storage directory
+def storage(path):
+    return send_from_directory('storage', path)
 
 @app.route('/letter', methods=['POST'])
 def upload_letter():
