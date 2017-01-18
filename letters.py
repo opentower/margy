@@ -85,7 +85,7 @@ def get_pw(username):
 
 @app.route('/private/<path:path>') #static URL for private storage directory
 @auth.login_required
-def private():
+def private(path):
     return send_from_directory('private', path)
 
 @app.route('/letter', methods=['POST'])
