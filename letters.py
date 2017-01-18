@@ -1,13 +1,19 @@
 from flask import Flask, render_template, request, send_from_directory, g
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
+from flask_httpauth import HTTPBasicAuth
 from outgoing_email import EmailUtils
 from encryption import f_encrypt
 import os, sys, re
 
 app = Flask(__name__, static_url_path='')
+auth = HTTPBasicAuth()
 Mobility(app)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #sets max size of 16 MB for uploads
+
+users = {
+    "test": "test",
+}
 
 @app.route('/') #handles requests for http://margymail.com
 def home():
@@ -70,6 +76,17 @@ def pulse():
 @app.route('/storage/<path:path>') #static URL for misc storage directory
 def storage(path):
     return send_from_directory('storage', path)
+
+@auth.get_password #password protection for private files
+def get_pw(username):
+    if username in users:
+        return users.get(username)
+    return None
+
+@app.route('/private/<path:path>') #static URL for private storage directory
+@auth.login_required
+def private():
+    return send_from_directory('private', path)
 
 @app.route('/letter', methods=['POST'])
 def upload_letter():

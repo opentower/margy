@@ -9,3 +9,4 @@ old/
 mail.*
 venv/
 storage/
+private/
