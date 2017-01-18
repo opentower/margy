@@ -12,7 +12,7 @@ Mobility(app)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #sets max size of 16 MB for uploads
 
 users = {}
-fileloc = '/home/git/margy/login'
+fileloc = '/home/margy/login'
 with open(fileloc) as i:
      for line in i:
           (key, val) = line.split()
