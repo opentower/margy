@@ -26,6 +26,7 @@ If you're interested in understanding how MARGY works, you can view the source c
 - `letters.py` contains the code for the MARGY website (more below)
 - `outgoing_email.py` contains the functions that `server.py` uses to send email
 - `server.py` contains the code for the MARGY email system (more below)
+- `mailfilter.sh` anonymizes the email logs by changing all email addresses to anonymous@whoknows.where
 
 
 ####LETTERS.PY
