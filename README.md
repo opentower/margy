@@ -17,7 +17,7 @@ For comments and general suggestions (or if you find a bug but would prefer not 
 If you're interested in understanding how MARGY works, you can view the source code here on GitHub. The following is a brief overview of what you'll find here. The two main files, `letters.py` and `server.py` have been heavily commented to ease understanding for those interested but without much relevant experience.
 
 ###GitHub Contents
-- `static (folder)` contains files used by all parts of the site, such as logos and CSS stylesheets, as well as the whitelist
+- `static (folder)` contains files used by all parts of the site, such as fonts and CSS stylesheets, as well as the whitelist
 - `templates (folder)` contains the html templates for the different site pages as well as the various emails MARGY sends
 - `.gitignore` tells the system which files not to share publicly (e.g., the folder with all the letters in it!)
 - `LICENSE.txt` contains a statement of MARGY's copyright
@@ -48,7 +48,7 @@ When an email comes in, `process_message` does the following:
 
 1. Reads the email (including body and headers) and saves that information for future use.
 2. Checks the body of the message for email addresses.
-3. If the email is directed to abuse@, postmaster@ or admin@ or MARGY@margymail.com, it forwards it to me.
+3. If the email is directed to abuse@, postmaster@, admin@ or MARGY@margymail.com, it forwards it to me.
 4. Checks whether the system has metadata associated with the incoming mailto code. If not, it sends an error reply.
 5. Decrypts the file associated with that metadata (using the key found in the mailto code) and flags it for attachment.
 6. Checks the email addresses from the incoming email against `whitelist.txt`. If there are no matches, it sends an error reply.
