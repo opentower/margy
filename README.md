@@ -27,7 +27,7 @@ If you're interested in understanding how MARGY works, you can view the source c
 - `mailfilter.sh` anonymizes the email logs
 - `outgoing_email.py` contains the functions that `server.py` uses to send email
 - `server.py` contains the code for the MARGY email system (more below)
-- `system_mail_watcher.sh` notifies the administrators when local email is received, which usually only happens if an email failed to send **NOTE**: This is the only system information that is not anonymous; if MARGY tries and fails to send an email, the administrators will be alerted and will see what email addresses were involved.
+- `system_mail_watcher.sh` notifies the administrators when local email is received, which usually only happens if an email failed to send. **NOTE**: This is the only system information that is not anonymous; if MARGY tries and fails to send an email, the administrators will be alerted and will see what email addresses were involved.
 
 
 ####LETTERS.PY
