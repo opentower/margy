@@ -1,6 +1,6 @@
 #Welcome to MARGY Beta Testing!
 
-MARGY is a **FREE** service for managing confidential letters of recommendation on the academic job market. During this second phase of beta testing, we are inviting certain departments to be added to the whitelist and encouraging applicants to those departments to use MARGY. During this period, we will be collecting minimal email data, solely for debugging purposes, all of which will be fully anonymized.
+MARGY is a **FREE** service for managing confidential letters of recommendation on the academic job market. During this second phase of beta testing, we are inviting certain departments to be added to the whitelist and encouraging applicants to those departments to use MARGY. During this period, we will be collecting minimal email data, solely for debugging purposes, which will be fully anonymized. (The only exception in terms of anonymity is when the system receives an automated message letting it know that an email has failed to send; in those cases, we cannot avoid seeing what email addresses were involved.)
 
 Feedback on the site design or notes on functionality continue to be greatly appreciated. If you are a coder, you can also check out our source code on [GitHub](https://github.com/davidfaraci/margy).
 
@@ -27,6 +27,7 @@ If you're interested in understanding how MARGY works, you can view the source c
 - `mailfilter.sh` anonymizes the email logs
 - `outgoing_email.py` contains the functions that `server.py` uses to send email
 - `server.py` contains the code for the MARGY email system (more below)
+- `system_mail_watcher.sh` notifies the administrators when local email is received, which usually only happens if an email failed to send (NB: This is the only system information that is not anonymous; if MARGY tries and fails to send an email, the administrators will be alerted and will see what email addresses were involved)
 
 
 ####LETTERS.PY
