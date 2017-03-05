@@ -11,3 +11,4 @@ venv/
 storage/
 private/
 login
+blacklist
