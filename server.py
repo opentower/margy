@@ -128,6 +128,7 @@ class MargySMTPServer(smtpd.SMTPServer):
         for line in bl: #checks reply-to address against blacklist
             if replyadr.lower() in line.lower():
                 log.write('Email blocked from blacklisted address ' + replyadr + '.')
+                print 'Blacklisted.'
                 blisted = 1
         if blisted == 0:
             for addr in rcpttos: #handle multiple addresses
