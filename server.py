@@ -126,12 +126,12 @@ class MargySMTPServer(smtpd.SMTPServer):
         bl = open('blacklist', 'r') #open blacklist (spam avoidance)
         blisted = 0
         for line in bl: #checks reply-to address against blacklist
-            if line.lower() == replyadr.lower():
+            if replyadr.lower() in line.lower():
                 log.write('Email blocked from blacklisted address ' + replyadr + '.')
                 blisted = 1
-        if blisted = 0:
+        if blisted == 0:
             for addr in rcpttos: #handle multiple addresses
-    	    recipient = re.match(recip, addr).group(1)
+    	       recipient = re.match(recip, addr).group(1)
                 if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or MARGY@margymail.com
                     admin_handler(data,log)
                 else:
