@@ -131,7 +131,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                 blisted = 1
         if blisted == 0:
             for addr in rcpttos: #handle multiple addresses
-    	       recipient = re.match(recip, addr).group(1)
+                recipient = re.match(recip, addr).group(1)
                 if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or MARGY@margymail.com
                     admin_handler(data,log)
                 else:
