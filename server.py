@@ -33,8 +33,10 @@ def admin_handler(data,log):
     log.write('Forwarded.\r\n')
     return
 
-#Replies with an error if the mailto code is too short
+#Replies with an error if the mailto code is too short and adds address to strikelist (for potential blacklisting)
 def too_short_handler(replyadr,recipient,log):
+    sl = open('strikelist', 'a')
+    sl.write(replyadr)
     with app.app_context():
         shorttxt = render_template('code_failure.txt',code=recipient)
         short = render_template('code_failure.html',code=recipient)
@@ -127,7 +129,7 @@ class MargySMTPServer(smtpd.SMTPServer):
         blisted = 0
         for line in bl: #checks reply-to address against blacklist
             if replyadr.lower() in line.lower():
-                log.write('Email blocked from blacklisted address ' + replyadr + '.')
+                log.write('Email blocked from blacklisted address ' + replyadr + '.\r\n')
                 print 'Blacklisted.'
                 blisted = 1
         if blisted == 0:
