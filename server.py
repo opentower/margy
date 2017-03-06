@@ -36,7 +36,7 @@ def admin_handler(data,log):
 #Replies with an error if the mailto code is too short and adds address to strikelist (for potential blacklisting)
 def too_short_handler(replyadr,recipient,log):
     sl = open('strikelist', 'a')
-    sl.write(replyadr)
+    sl.write(replyadr + '\r\n')
     with app.app_context():
         shorttxt = render_template('code_failure.txt',code=recipient)
         short = render_template('code_failure.html',code=recipient)
