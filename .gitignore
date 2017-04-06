@@ -13,3 +13,5 @@ private/
 login
 blacklist
 strikelist
+mbox
+slack_message.sh
