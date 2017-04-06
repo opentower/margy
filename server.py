@@ -139,7 +139,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                 if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or MARGY@margymail.com
                     admin_handler(data,log)
                 else:
-                    if recipient.lower() != 'sales': #ignores emails to sales@
+                    if ( recipient.lower() != 'sales' or recipient.lower() != 'info' ): #ignores emails to sales@ and info@
                         if len(recipient) < 11: #makes sure the mailto code isn't too short
                             too_short_handler(replyadr,recipient,log)
                         else:
