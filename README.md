@@ -1,4 +1,4 @@
-# Welcome to MARGY Beta Testing!
+# Welcome to MARGY!
 
 MARGY is a **FREE** service for managing confidential letters of recommendation on the academic job market. We collect minimal email data, solely for debugging purposes, which is fully anonymized. (The only exception in terms of anonymity is when the system receives an automated message letting it know that an email has failed to send; in those cases, we cannot avoid seeing what email addresses were involved.)
 
