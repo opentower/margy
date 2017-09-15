@@ -35,8 +35,30 @@ def admin_handler(data,log):
 
 #Replies with an error if the mailto code is too short and adds address to strikelist (for potential blacklisting)
 def too_short_handler(replyadr,recipient,log):
-    sl = open('strikelist', 'a')
-    sl.write(replyadr + '\r\n')
+    bl = open('blacklist', 'ab+')
+    sl = open('strikelist', 'r')
+    stwo = 0
+    for line in sl: #checks if address already strikelisted
+        if replyadr.lower() in line.lower():
+            log.write('Strikelisted address ' + replyadr + ' added to blacklist.\r\n')
+            bl.write(replyadr + '\r\n')
+            stwo = 1
+    sl.close()
+    if stwo == 1:
+        sl = open('strikelist', 'r+')
+        slcont = sl.readlines()
+        sl.seek(0)
+        for entry in slcont:
+            if replyadr.lower() not in entry.lower():
+                sl.write(entry)
+        sl.truncate()
+        sl.close()
+    else:
+        log.write('Strike for ' + replyadr + '.\r\n')
+        sl = open('strikelist', 'ab+')
+        sl.write(replyadr + '\r\n')
+        sl.close()
+    bl.close()
     with app.app_context():
         shorttxt = render_template('code_failure.txt',code=recipient)
         short = render_template('code_failure.html',code=recipient)
@@ -74,8 +96,8 @@ def corrupt_file_handler(replyadr,cfn,log):
 #Delivers the letter to a whitelisted address
 def delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log):
     with app.app_context():
-       toedutxt = render_template('delivery.txt',rfn=rfn,rln=rln,afn=afn,aln=aln)
-       toedu = render_template('delivery.html',rfn=rfn,rln=rln,afn=afn,aln=aln)
+       toedutxt = render_template('delivery.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,email=match)
+       toedu = render_template('delivery.html',rfn=rfn,rln=rln,afn=afn,aln=aln,email=match)
     applicant = afn + ' ' + aln
     subject = 'Letter Delivery for ' + applicant
     EmailUtils.rich_message('MARGY@margymail.com',match,subject,toedutxt,toedu,attach,cfn)
@@ -139,7 +161,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                 if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or MARGY@margymail.com
                     admin_handler(data,log)
                 else:
-                    if ( recipient.lower() != 'sales' or recipient.lower() != 'info' ): #ignores emails to sales@ and info@
+                    if ( recipient.lower() != 'sales' and recipient.lower() != 'info' and recipient.lower() != 'xderia' ): #ignores emails to sales@, info@ and xderia@
                         if len(recipient) < 11: #makes sure the mailto code isn't too short
                             too_short_handler(replyadr,recipient,log)
                         else:

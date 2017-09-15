@@ -60,6 +60,11 @@ def thanks():
 def credits():
     return render_template('credits.html')
 
+@app.route('/unsubscribe', defaults={'email': ''})
+@app.route('/unsubscribe/<email>') #handles requests for http://margymail.com/unsubscribe
+def unsubscribe(email):
+    return render_template('unsubscribe.html',email=email)
+
 @app.route('/storage/<path:path>') #URL handler for public storage directory
 def storage(path):
     return send_from_directory('storage', path)
@@ -74,6 +79,23 @@ def get_pw(username):
 @auth.login_required
 def private(path):
     return send_from_directory('private', path)
+
+@app.route('/unsub', methods=['POST']) #adds unsubscriber emails to unsubscriber list and removes from whitelist
+def unsub():
+    if request.method == 'POST':
+        addr = request.form['addr'].lstrip().rstrip()
+        f = open('unsubscribers.txt', 'a')
+        f.write(addr + '\r\n')
+        f.close()
+        f = open('static/whitelist.txt', 'r')
+        lines = f.readlines()
+        f.close()
+        f = open('static/whitelist.txt', 'w')
+        for line in lines:
+            if addr not in line:
+                f.write(line)
+        f.close()
+        return render_template('unsubscribed.html',addr=addr)
 
 @app.route('/letter', methods=['POST'])
 def upload_letter():

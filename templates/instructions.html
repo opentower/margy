@@ -1,11 +1,11 @@
 {%extends "index.html" %}
 {% block contents %}
 <p class="credits txt">
-<a href="/instructions"><button class=inbutton>Quick Instructions</button></a>
+<button class=inbutton onclick="window.location='/instructions';">Quick Instructions</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="/detailed"><button class=inbutton>Detailed Instructions</button></a>
+<button class=inbutton onclick="window.location='/detailed';">Detailed Instructions</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="howto"><button class=inbutton>How To...</button></a>
+<button class=inbutton onclick="window.location='/howto';">How To...</button>
 </p>
 <br>
 {% block choice %}

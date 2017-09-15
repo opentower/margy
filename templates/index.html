@@ -1,12 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>MARGY</title>
-<link rel="canonical" href="http://margymail.com">
+<link rel="canonical" href="https://margymail.com">
 <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
 <meta property="og:title" content="MARGY">
 <meta property="og:description" content="Managing Academic Recommendations Gratis Yay">
-<meta property="og:image" content="http://margymail.com/storage/margylogo.png" />
-<meta property="og:url" content="http://margymail.com" />
+<meta property="og:image" content="https://margymail.com/storage/margylogo.png" />
+<meta property="og:url" content="https://margymail.com" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 {% if request.MOBILE %}
@@ -50,6 +51,7 @@ $(function() {
 
     <div class="menu">
     <ul>
+    <a href="/"><li>ABOUT</li></a>
     <a href="/upload"><li>UPLOAD A LETTER</li></a>
     <a href="/instructions"><li>INSTRUCTIONS</li></a>
     <a href="/confidentiality"><li>CONFIDENTIALITY</li></a>
@@ -60,15 +62,17 @@ $(function() {
 {% else %}
     <table class=topbar>
     <tr>
-    <td class=mouse><a href="/upload"><button class=button>Upload a Letter</button></a>
+    <td class=mouse><button class=button onclick="window.location='/';">About</button>
     <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <a href="/instructions"><button class=button>Instructions</button></a>
+    <button class=button onclick="window.location='/upload';">Upload a Letter</button>
     <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <a href="/confidentiality"><button class=button>Confidentiality</button></a>
+    <button class=button onclick="window.location='/instructions';">Instructions</button>
     <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <a href="/donate"><button class=button>Donate</button></a>
+    <button class=button onclick="window.location='/confidentiality';">Confidentiality</button>
     <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <a href="/credits"><button class=button>Credits</button></a></td>
+    <button class=button onclick="window.location='/donate';">Donate</button>
+    <span class=mouse>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <button class=button onclick="window.location='/credits';">Credits</button></td>
     </tr>
     </table>
 {% endif %}
@@ -81,6 +85,7 @@ $(function() {
 </div>
 </div>
 <div id="footer">
+<p class=footer>An <span class=ot><a target='_blank' href="https://open-tower.com">Open Tower</a></span> Project</p>
 <p class=footer>&copy; Copyright 2016 David Faraci</p>
 </div>
 </div>
