@@ -133,7 +133,7 @@ button:focus {outline:0;}
 .keys { font-family: typekeys; font-size: 1.1em; }
 .footer { font-size: .8em; text-align: right; padding: 0 0 5px 0; margin: 0; }
 .shy { display: none; }
-.wl { text-align-last: justify; }
+.wl { white-space: pre-wrap; margin-top: -1.25em; line-height: 1.75em; }
 .load { height: 45px; vertical-align: middle; display: none; }
 
 .ot { font-family: 'street'; }

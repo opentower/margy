@@ -45,7 +45,7 @@ def questions():
 @app.route('/confidentiality') #handles requests for http://margymail.com/confidentiality
 def whitelist():
     with open('static/whitelist.txt', 'r') as f: #gets the contents of whitelist.txt so they can be displayed
-        data = f.read()
+        data = f.read().replace('@', ' [at] ').replace('.', ' [dot] ')
     return render_template('confidentiality.html',data=data)
 
 @app.route('/donate') #handles requests for http://margymail.com/donate

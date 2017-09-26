@@ -152,7 +152,7 @@ label.browse input[type="file"] {
 .keys { font-family: typekeys; font-size: 1.1em; }
 .footer { font-size: 1.5em; text-align: right; }
 .shy { display: none; }
-.wl { text-align-last: justify; }
+.wl { white-space: pre-wrap; margin-top: -1.25em; line-height: 1.75em; }
 .load { height: 80px; vertical-align: middle; display: none; }
 
 a:visited { color: #0000FF; text-decoration: none; }
