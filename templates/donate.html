@@ -1,6 +1,16 @@
 
 {% extends "index.html" %}
 {% block contents %}
-<p class=txt>MARGY is provided as an entirely free service, thanks in part to a generous grant of server space from someone, we hope. However, time and funds (e.g., for the domain name) go into MARGY&rsquo;s development and management. So especially if MARGY has saved you money, please consider donating!</p>
-<button>DONATE BUTTON WILL GO HERE</button>
+<p class=txt>MARGY is provided as an entirely free service. However, time and funds (the domain name and server space cost about $62/year) go into MARGY&rsquo;s development and management. So especially if MARGY has saved you money, please consider donating!</p>
+<br>
+<div class=credits>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="AB8H33FZHXXSG">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+{% block thanks %}
+{% endblock %}
 {% endblock %}

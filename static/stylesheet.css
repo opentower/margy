@@ -5,6 +5,11 @@ html { overflow-y: scroll; }
     src: url("Type Keys Filled.ttf")
 }
 
+@font-face {
+    font-family: street;
+    src: url(Streetvertising.ttf);
+}
+
 body { margin: 0; }
 
 .page {
@@ -53,6 +58,8 @@ table.topbar td {
     cursor: pointer
 }
 
+button:focus {outline:0;}
+
 .button:active {
     box-shadow: 0 5px #000000;
     transform: translateY(1px);
@@ -74,6 +81,26 @@ table.topbar td {
 }
 
 .inbutton:active {
+    box-shadow: 0 5px #FFFFFF;
+    transform: translateY(1px);
+}
+
+.upbutton {
+    vertical-align: middle;
+    width: 100px;
+    height: 45px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: "georgia";
+    font-size: 1em;
+    font-variant: small-caps;
+    border: 1;
+    border-color: #000000;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer
+}
+
+.upbutton:active {
     box-shadow: 0 5px #FFFFFF;
     transform: translateY(1px);
 }
@@ -104,12 +131,15 @@ table.topbar td {
 .green { color: green; }
 .credits { text-align: center; }
 .keys { font-family: typekeys; font-size: 1.1em; }
-.footer { font-size: .8em; text-align: right; }
+.footer { font-size: .8em; text-align: right; padding: 0 0 5px 0; margin: 0; }
 .shy { display: none; }
-.wl { text-align-last: justify; }
+.wl { white-space: pre-wrap; margin-top: -1.25em; line-height: 1.75em; }
+.load { height: 45px; vertical-align: middle; display: none; }
+
+.ot { font-family: 'street'; }
 
 .beta{
-    padding: 10;
+    padding: 10px;
     background-color: black;
     color: #E8E8E8;
     margin: 0 0 1em 0;
@@ -138,15 +168,4 @@ a:active { color: #FF0000; text-decoration: none; }
    vertical-align: top;
    text-align: right;
    height:100px;   /* Height of the footer */
-}
-
-.ui-progressbar {
-  position: relative;
-}
-.progress-label {
-  position: absolute;
-  left: 50%;
-  top: 4px;
-  font-weight: bold;
-  text-shadow: 1px 1px 0 #fff;
 }

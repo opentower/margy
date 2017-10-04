@@ -1,3 +1,3 @@
-MARGY received a request for Letter Code {{ code }} from this address. That code does not match any files in MARGY's database. For questions, or if you believe you received this email in error, please contact admin@margymail.com.
+MARGY received a request for mailto code '{{ code }}' from this address. That code does not match any files in MARGY's database. For questions, or if you believe you received this email in error, please contact admin@margymail.com.
 
 MARGY

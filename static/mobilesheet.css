@@ -106,6 +106,26 @@ label.browse input[type="file"] {
     transform: translateY(1px);
 }
 
+.upbutton {
+    vertical-align: middle;
+    width: 200px;
+    height: 80px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: "georgia";
+    font-size: 1.2em;
+    font-variant: small-caps;
+    border: 1;
+    border-color: #000000;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer
+}
+
+.upbutton:active {
+    box-shadow: 0 5px #FFFFFF;
+    transform: translateY(1px);
+}
+
 .b { font-weight: bold; }
 .u { text-decoration: underline; }
 .i { font-style: italic; }
@@ -129,9 +149,11 @@ label.browse input[type="file"] {
 .red { color: red; }
 .green { color: green; }
 .credits { text-align: center; }
+.keys { font-family: typekeys; font-size: 1.1em; }
 .footer { font-size: 1.5em; text-align: right; }
 .shy { display: none; }
-.wl { text-align-last: justify; }
+.wl { white-space: pre-wrap; margin-top: -1.25em; line-height: 1.75em; }
+.load { height: 80px; vertical-align: middle; display: none; }
 
 a:visited { color: #0000FF; text-decoration: none; }
 a:link { color: #0000FF; text-decoration: none; }

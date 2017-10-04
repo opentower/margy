@@ -50,6 +50,7 @@ class EmailUtils:
                 msg['Subject'] = topic
                 msg['From'] = mfrom
                 msg['To'] = to
+                msg['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
                 msg.attach(body)
                 pdf=MIMEApplication(data,'pdf')
                 if name: pdf.add_header('Content-Disposition','attachment',filename=name)
@@ -63,6 +64,7 @@ class EmailUtils:
                 body['Subject'] = topic
                 body['From'] = mfrom
                 body['To'] = to
+                body['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to, body.as_string())
                 s.quit()
@@ -73,6 +75,7 @@ class EmailUtils:
                 msg['Subject'] = topic
                 msg['From'] = mfrom
                 msg['To'] = to
+                msg['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
                 msg.attach(ptpart)
                 pdf=MIMEApplication(data,'pdf')
                 if name: pdf.add_header('Content-Disposition','attachment',filename=name)
@@ -86,6 +89,7 @@ class EmailUtils:
                 ptpart['Subject'] = topic
                 ptpart['From'] = mfrom
                 ptpart['To'] = to
+                ptpart['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to, ptpart.as_string())
                 s.quit()
