@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import smtplib
 import email
 import re
@@ -26,7 +27,7 @@ class EmailUtils:
     @staticmethod
     def text_message(mfrom,to,topic,body):
 #      Send an email with a simple text message
-        msg=MIMEText(body);
+        msg=MIMEText(body,'plain','utf-8');
         msg['Subject'] = topic
         msg['From'] = mfrom
         msg['To'] = to
@@ -39,10 +40,10 @@ class EmailUtils:
     @staticmethod
     def rich_message(mfrom,to,topic,plain,html=None,data=None,name=None):
 #      Send an email with a simple text message
-        ptpart = MIMEText(plain,'plain')
+        ptpart = MIMEText(plain,'plain','utf-8')
         if html:
             body = MIMEMultipart('alternative')
-            htmlpart = MIMEText(html,'html')
+            htmlpart = MIMEText(html,'html','utf-8')
             body.attach(ptpart)
             body.attach(htmlpart)
             if data:

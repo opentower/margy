@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, render_template, request, send_from_directory, g
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 from flask_httpauth import HTTPBasicAuth
 from outgoing_email import EmailUtils
 from encryption import f_encrypt
-import os, sys, re
+import io, os, sys, re
 
 app = Flask(__name__, static_url_path='')
 auth = HTTPBasicAuth()
@@ -12,11 +13,11 @@ Mobility(app)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #sets max size of 16 MB for uploads
 
 users = {}
-fileloc = '/home/margy/login'
+fileloc = 'login'
 with open(fileloc) as i:
      for line in i:
           (key, val) = line.split()
-          users[key] = val
+          users[key] = var
 
 @app.route('/') #handles requests for http://margymail.com
 def home():
@@ -44,7 +45,7 @@ def questions():
 
 @app.route('/confidentiality') #handles requests for http://margymail.com/confidentiality
 def whitelist():
-    with open('static/whitelist.txt', 'r') as f: #gets the contents of whitelist.txt so they can be displayed
+    with io.open('static/whitelist.txt', 'r',encoding="utf-8") as f: #gets the contents of whitelist.txt so they can be displayed
         data = f.read().replace('@', ' [at] ').replace('.', ' [dot] ')
     return render_template('confidentiality.html',data=data)
 
@@ -84,13 +85,13 @@ def private(path):
 def unsub():
     if request.method == 'POST':
         addr = request.form['addr'].lstrip().rstrip()
-        f = open('unsubscribers.txt', 'a')
+        f = io.open('unsubscribers.txt', 'a', encoding="utf-8") 
         f.write(addr + '\r\n')
         f.close()
-        f = open('static/whitelist.txt', 'r')
+        f = io.open('static/whitelist.txt', 'r', encoding="utf-8")
         lines = f.readlines()
         f.close()
-        f = open('static/whitelist.txt', 'w')
+        f = io.open('static/whitelist.txt', 'w', encoding="utf-8")
         for line in lines:
             if addr not in line:
                 f.write(line)
@@ -111,7 +112,7 @@ def upload_letter():
         afncode = afn.replace(" ", "_")
         alncode = aln.replace(" ", "_")
         codename = aln + rln #Assigns Applicant's Last Name and Recommender's Last Name as the fist part of the letter's file name
-        d = open('metadata.txt', 'r')
+        d = io.open('metadata.txt', 'r', encoding="utf-8")
         num = 0
         for line in d: #checks whether there are other lines in the metadata with the same Last Names combination
             if codename.lower() == line.rstrip().lower()[:len(codename)]:
@@ -129,7 +130,7 @@ def upload_letter():
             else:
                 key = f_encrypt(codedfilename, f.read()) #encrypts the letter and assigns it a decryption key
                 mailto = codename + '_' + key #creates a mailto code, concatenating the codename, an underscore, and the key
-                a = open('metadata.txt', 'a')
+                a = io.open('metadata.txt', 'a', encoding="utf-8")
                 a.write(metadata) #writes the metadata to metadata.txt
                 a.close()
                 txtbody = render_template('rec_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,codename=mailto)

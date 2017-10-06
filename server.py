@@ -1,9 +1,11 @@
 #! /usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # Libraries
 import smtpd
 import asyncore
 import sys
+import io
 import os
 import re
 import PyPDF2
@@ -35,8 +37,8 @@ def admin_handler(data,log):
 
 #Replies with an error if the mailto code is too short and adds address to strikelist (for potential blacklisting)
 def too_short_handler(replyadr,recipient,log):
-    bl = open('blacklist', 'ab+')
-    sl = open('strikelist', 'r')
+    bl = io.open('blacklist', 'ab+', encoding="utf-8")
+    sl = io.open('strikelist', 'r', encoding="utf-8")
     stwo = 0
     for line in sl: #checks if address already strikelisted
         if replyadr.lower() in line.lower():
@@ -45,7 +47,7 @@ def too_short_handler(replyadr,recipient,log):
             stwo = 1
     sl.close()
     if stwo == 1:
-        sl = open('strikelist', 'r+')
+        sl = io.open('strikelist', 'r+', encoding="utf-8")
         slcont = sl.readlines()
         sl.seek(0)
         for entry in slcont:
@@ -55,7 +57,7 @@ def too_short_handler(replyadr,recipient,log):
         sl.close()
     else:
         log.write('Strike for ' + replyadr + '.\r\n')
-        sl = open('strikelist', 'ab+')
+        sl = io.open('strikelist', 'ab+', encoding="utf-8")
         sl.write(replyadr + '\r\n')
         sl.close()
     bl.close()
@@ -135,7 +137,7 @@ def sender_confirmation_handler(replyadr,rfn,rln,afn,aln,cfn,sentto,fsent,log):
 
 class MargySMTPServer(smtpd.SMTPServer):
     def process_message(self, peer, mailfrom, rcpttos, data):
-        log = open('serverlog.txt', 'a') #The log will be removed once MARGY is out of beta.
+        log = io.open('serverlog.txt', 'a', encoding="utf-8") #The log will be removed once MARGY is out of beta.
         log.write('\r\n')
         print 'Receiving...'
         parser = Parser()
@@ -147,7 +149,7 @@ class MargySMTPServer(smtpd.SMTPServer):
         matches = list(set(matches)) #deduplicate match list
         if 'reply-to' in msg: replyadr = msg['reply-to']
         else: replyadr = str(mailfrom) #checks for a reply-to address; if not present, assigns sender as reply-to address
-        bl = open('blacklist', 'r') #open blacklist (spam avoidance)
+        bl = io.open('blacklist', 'r', encoding="utf-8") #open blacklist (spam avoidance)
         blisted = 0
         for line in bl: #checks reply-to address against blacklist
             if replyadr.lower() in line.lower():
@@ -167,7 +169,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                         else:
                             filecode = recipient[:-10] #scrapes all but the last 10 characters of the mailto code to serve as filecode (e.g., 'Test' from Test_123456789)
                             key = recipient[-9:] #scrapes the final 9 characters of the mailto code to serve as key (e.g., '123456789' from Test_123456789)
-                            f = open('metadata.txt', 'r') #opens the file containing the metadata
+                            f = io.open('metadata.txt', 'r', encoding="utf-8") #opens the file containing the metadata
                             mdata = 'empty' #set in case there is no metadata for the filecode
                             for line in f: #checks whether the filecode matches the first entry on each line of metadata and, if so, scrapes the line
                                 if filecode.lower() == line.rstrip().lower()[:len(filecode)]:
@@ -200,7 +202,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                                         sentto = "" #creates an empty variable for whitelisted addresses that will receive attachment
                                         failed = [] #creates an empty list for non-whitelisted addresses that will not receive attachment
                                         for match in matches + [replyadr]: #checks each email address in the body and the reply-to address against the whitelist
-                                           wl = open('static/whitelist.txt')
+                                           wl = io.open('static/whitelist.txt', 'r', encoding="utf-8")
                                            for line in wl:
                                                if ( match.lower() == line.rstrip().lower() and match not in sentto.strip().lower() ):
                                                    delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log)
