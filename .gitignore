@@ -3,6 +3,7 @@ letters/
 serverlog.txt
 metadata.txt
 .*
+*.save
 !.gitignore
 tmux-servers
 old/
