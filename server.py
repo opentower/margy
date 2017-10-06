@@ -145,7 +145,7 @@ class MargySMTPServer(smtpd.SMTPServer):
         matches = [] #initialize matches for accumulation
         for part in msg.walk(): #get matches only from text/html and text/plain parts of an email
             if part.get_content_type() in ['text/plain','text/html']:
-                matches = matches + re.findall(email,part.get_payload())
+                matches = matches + re.findall(email,part.get_payload(decode=True))
         matches = list(set(matches)) #deduplicate match list
         if 'reply-to' in msg: replyadr = msg['reply-to']
         else: replyadr = str(mailfrom) #checks for a reply-to address; if not present, assigns sender as reply-to address
