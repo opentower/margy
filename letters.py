@@ -17,7 +17,7 @@ fileloc = 'login'
 with open(fileloc) as i:
      for line in i:
           (key, val) = line.split()
-          users[key] = var
+          users[key] = val
 
 @app.route('/') #handles requests for http://margymail.com
 def home():
