@@ -141,9 +141,9 @@ button:focus {outline:0;}
 .beta{
     padding: 10px;
     background-color: black;
-    color: #E8E8E8;
+    color: #FFFFFF;
     margin: 0 0 1em 0;
-    text-align: justify;
+    text-align: center;
 }
 
 .beta a { color: #00CED1 !important; }

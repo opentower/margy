@@ -32,7 +32,7 @@ recip = re.compile(r"(" + emailchar + r"+)@" + emailchar + r"+\." + emailchar + 
 #Forwards emails sent to admin@margymail.com or postmaster@margymail.com to faraci@gmail.com
 def admin_handler(data,log):
     EmailUtils.forward_message(data,'faraci@gmail.com')
-    log.write('Forwarded.\r\n')
+    log.write(u'Forwarded.\r\n')
     return
 
 #Replies with an error if the mailto code is too short and adds address to strikelist (for potential blacklisting)
@@ -42,7 +42,7 @@ def too_short_handler(replyadr,recipient,log):
     stwo = 0
     for line in sl: #checks if address already strikelisted
         if replyadr.lower() in line.lower():
-            log.write('Strikelisted address ' + replyadr + ' added to blacklist.\r\n')
+            log.write(u'Strikelisted address ' + replyadr + u' added to blacklist.\r\n')
             bl.write(replyadr + '\r\n')
             stwo = 1
     sl.close()
@@ -56,16 +56,16 @@ def too_short_handler(replyadr,recipient,log):
         sl.truncate()
         sl.close()
     else:
-        log.write('Strike for ' + replyadr + '.\r\n')
+        log.write(u'Strike for ' + replyadr + '.\r\n')
         sl = io.open('strikelist', 'ab+', encoding="utf-8")
-        sl.write(replyadr + '\r\n')
+        sl.write(replyadr + u'\r\n')
         sl.close()
     bl.close()
     with app.app_context():
         shorttxt = render_template('code_failure.txt',code=recipient)
         short = render_template('code_failure.html',code=recipient)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',shorttxt,short)
-    log.write('Too short.\r\n')
+    log.write(u'Too short.\r\n')
     return
 
 #Replies with an error if no match is found for the mailto code in metadata.txt
@@ -74,7 +74,7 @@ def no_match_handler(replyadr,recipient,log):
         errortxt = render_template('code_failure.txt',code=recipient)
         error = render_template('code_failure.html',code=recipient)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',errortxt,error)
-    log.write('Not in metadata.\r\n')
+    log.write(u'Not in metadata.\r\n')
     return
 
 #Replies with an error if no such file is found in letters/
@@ -83,7 +83,7 @@ def no_such_file_handler(replyadr,cfn,log):
         nofiletxt = render_template('file_failure.txt',cfn=cfn)
         nofile = render_template('file_failure.html',cfn=cfn)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',nofiletxt,nofile)
-    log.write('File not found.\r\n')
+    log.write(u'File not found.\r\n')
     return
 
 #Replies with an error if the file is corrupt
@@ -92,7 +92,7 @@ def corrupt_file_handler(replyadr,cfn,log):
         corrupttxt = render_template('corrupt_failure.txt',file=cfn)
         corrupt = render_template('corrupt_failure.html',file=cfn)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',corrupttxt,corrupt)
-    log.write('Corrupt file.\r\n')
+    log.write(u'Corrupt file.\r\n')
     return
 
 #Delivers the letter to a whitelisted address
@@ -103,7 +103,7 @@ def delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log):
     applicant = afn + ' ' + aln
     subject = 'Letter Delivery for ' + applicant
     EmailUtils.rich_message('MARGY@margymail.com',match,subject,toedutxt,toedu,attach,cfn)
-    log.write('Delivery made.\r\n')
+    log.write(u'Delivery made.\r\n')
     return
 
 #Replies with an error if there are no whitelisted addresses present
@@ -112,7 +112,7 @@ def not_whitelisted_handler(replyadr,log):
        wlfailtxt = render_template('wl_failure.txt')
        wlfail = render_template('wl_failure.html')
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',wlfailtxt,wlfail)
-    log.write('No whitelisted addresses present.\r\n')
+    log.write(u'No whitelisted addresses present.\r\n')
     return
 
 #Sends the applicant a confirmation noting whitelisted addresses sent to and any requested addresses not sent to
@@ -121,7 +121,7 @@ def applicant_confirmation_handler(aem,rfn,rln,afn,aln,cfn,sentto,fsent,log):
         toapptxt = render_template('del_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,cfn=cfn,sentto=sentto,failed=fsent)
         toapp = render_template('del_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,cfn=cfn,sentto=sentto,failed=fsent)
     EmailUtils.rich_message('MARGY@margymail.com',aem,'Letter Delivery Confirmation',toapptxt,toapp)
-    log.write('Confirmation sent.\r\n')
+    log.write(u'Confirmation sent.\r\n')
     return
 
 #Replies with a confirmation noting whitelisted addresses sent to and any requested addresses not sent to
@@ -130,7 +130,7 @@ def sender_confirmation_handler(replyadr,rfn,rln,afn,aln,cfn,sentto,fsent,log):
         tosendertxt = render_template('del_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,cfn=cfn,sentto=sentto,failed=fsent)
         tosender = render_template('del_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,cfn=cfn,sentto=sentto,failed=fsent)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Confirmation',tosendertxt,tosender)
-    log.write('Confirmation sent.\r\n')
+    log.write(u'Confirmation sent.\r\n')
     return
 
 #SERVER
@@ -138,7 +138,7 @@ def sender_confirmation_handler(replyadr,rfn,rln,afn,aln,cfn,sentto,fsent,log):
 class MargySMTPServer(smtpd.SMTPServer):
     def process_message(self, peer, mailfrom, rcpttos, data):
         log = io.open('serverlog.txt', 'a', encoding="utf-8") #The log will be removed once MARGY is out of beta.
-        log.write('\r\n')
+        log.write(u'\r\n')
         print 'Receiving...'
         parser = Parser()
         msg = parser.parsestr(data)
@@ -148,19 +148,19 @@ class MargySMTPServer(smtpd.SMTPServer):
                 matches = matches + re.findall(email,part.get_payload(decode=True))
         matches = list(set(matches)) #deduplicate match list
         if 'reply-to' in msg: replyadr = msg['reply-to']
-        else: replyadr = str(mailfrom) #checks for a reply-to address; if not present, assigns sender as reply-to address
+        else: replyadr = str(mailfrom).decode('utf-8') #checks for a reply-to address; if not present, assigns sender as reply-to address
         bl = io.open('blacklist', 'r', encoding="utf-8") #open blacklist (spam avoidance)
         blisted = 0
         for line in bl: #checks reply-to address against blacklist
             if replyadr.lower() in line.lower():
-                log.write('Email blocked from blacklisted address ' + replyadr + '.\r\n')
+                log.write(u'Email blocked from blacklisted address ' + replyadr + '.\r\n')
                 print 'Blacklisted.'
                 blisted = 1
         bl.close()
         if blisted == 0:
             for addr in rcpttos: #handle multiple addresses
                 recipient = re.match(recip, addr).group(1)
-                if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or MARGY@margymail.com
+                if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'testing' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or testing@ or MARGY@margymail.com
                     admin_handler(data,log)
                 else:
                     if ( recipient.lower() != 'sales' and recipient.lower() != 'info' and recipient.lower() != 'xderia' ): #ignores emails to sales@, info@ and xderia@
@@ -214,14 +214,14 @@ class MargySMTPServer(smtpd.SMTPServer):
                                         for miss in failed: #...deduplication and removal of reply-to address from the list of failed recipients
                                             if ( miss.lower() != replyadr.lower() and miss.lower() not in sentto.strip().lower() and miss.lower() not in fsent.strip().lower() ):
                                                 fsent += miss + ' '
-                                                log.write('Delivery failed to ' + line + '.\r\n')
+                                                log.write(u'Delivery failed to ' + miss.decode('utf-8') + u'.\r\n')
                                         if sentto == "": #deals with cases where there were no whitelisted addresses
                                             not_whitelisted_handler(replyadr,log)
                                         else: #sends confirmations to the applicant and the reply-to address (if attachment was sent anywhere)
                                             applicant_confirmation_handler(aem,rfn,rln,afn,aln,cfn,sentto,fsent,log)
                                             if ( replyadr.lower() != aem.lower()):
                                                sender_confirmation_handler(replyadr,rfn,rln,afn,aln,cfn,sentto,fsent,log)
-            log.write('End of log entry.')
+            log.write(u'End of log entry.')
             log.close()
             print 'Done.'
             return

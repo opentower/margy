@@ -714,3 +714,41 @@ Receiving message from:('1.162.174.103', 2095)Message addressed from:dlh@email.c
 
 File not found. Failure message sent to dlh@email.cta.cq.cnt.
 End of log entry.
+
+
+
+
+
+Forwarded.
+
+Forwarded.
+
+Forwarded.
+
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+
+Delivery made.
+Confirmation sent.
+Confirmation sent.
+End of log entry.
+Delivery failed to testing@margymail.com.
+No whitelisted addresses present.
+End of log entry.
+Forwarded.
+End of log entry.
+Delivery failed to testing@margymail.com.
+No whitelisted addresses present.
+End of log entry.
+Forwarded.
+End of log entry.
+Delivery failed to testing@margymail.com.
+No whitelisted addresses present.
+End of log entry.

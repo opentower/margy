@@ -86,7 +86,7 @@ def unsub():
     if request.method == 'POST':
         addr = request.form['addr'].lstrip().rstrip()
         f = io.open('unsubscribers.txt', 'a', encoding="utf-8") 
-        f.write(addr + '\r\n')
+        f.write(addr.decode('utf-8') + u'\r\n')
         f.close()
         f = io.open('static/whitelist.txt', 'r', encoding="utf-8")
         lines = f.readlines()
@@ -94,7 +94,7 @@ def unsub():
         f = io.open('static/whitelist.txt', 'w', encoding="utf-8")
         for line in lines:
             if addr not in line:
-                f.write(line)
+                f.write(line.decode('utf-8'))
         f.close()
         return render_template('unsubscribed.html',addr=addr)
 

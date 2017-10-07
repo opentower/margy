@@ -63,9 +63,9 @@ header{
 .beta{
     padding: 20;
     background-color: black;
-    color: #E8E8E8;
+    color: #00FF00;
     margin: 0 0 1em 0;
-    text-align: justify;
+    text-align: center;
 }
 
 .beta a { color: #00CED1 !important; }
