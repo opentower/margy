@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block contents %}
+<p class=b>Email Blast List</p>
+<p class=txt>You may use this form to add/remove your email address to/from MARGY's email blast list. We use this list only to inform users of important information, such as new features or outages. If you have questions, please email <a href="mailto:admin@margymail.com">admin@margymail.com</a>.</p>
+<form id=blastadd action="/blastadd" method="post" enctype="multipart/form-data">
+<p>Email Address to Add:<br>
+    <input class=txtinput value="{{ email }}" type=text name="addr" id="addr" required></p>
+    <button type="submit" class=upbutton>Add</button>
+</form>
+<form id=blastrm action="/blastrm" method="post" enctype="multipart/form-data">
+<br><br>
+<p>Email Address to Remove:<br>
+    <input class=txtinput type=text name="addr" id="addr" required></p>
+    <button type="submit" class=upbutton>Remove</button>
+</form>
+<br>
+{% block status %}
+{% endblock %}
+{% endblock %}

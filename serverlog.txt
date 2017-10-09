@@ -752,3 +752,42 @@ End of log entry.
 Delivery failed to testing@margymail.com.
 No whitelisted addresses present.
 End of log entry.
+Not in metadata.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Forwarded.
+End of log entry.
+Email blocked from blacklisted address dlh@email.cta.cq.cnt.
+
+End of log entry.
+Forwarded.
+End of log entry.
+Delivery made.
+Confirmation sent.
+End of log entry.
