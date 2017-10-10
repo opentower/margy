@@ -103,28 +103,26 @@ def unsub():
         f.close()
         return render_template('unsubscribed.html',addr=addr)
 
-@app.route('/blastadd', methods=['POST']) #adds email addresses to email blast list
+@app.route('/blastaddrm', methods=['POST']) #adds/removes email addresses to/from email blast list
 def add():
     if request.method == 'POST':
-        addr = request.form['addr'].lstrip().rstrip()
-        f = io.open('blastlist.txt', 'a', encoding="utf-8")
-        f.write(addr.decode('utf-8') + u'\r\n')
-        f.close()
-        return render_template('listadded.html',addr=addr)
-
-@app.route('/blastrm', methods=['POST']) #removes email addresses from email blast list
-def rm():
-    if request.method == 'POST':
-        addr = request.form['addr'].lstrip().rstrip()
-        f = io.open('blastlist.txt', 'r', encoding="utf-8")
-        lines = f.readlines()
-        f.close()
-        f = io.open('blastlist.txt', 'w', encoding="utf-8")
-        for line in lines:
-            if addr not in line:
-                f.write(line.decode('utf-8'))
-        f.close()
-        return render_template('listremoved.html',addr=addr)
+        if request.form['submit'] == 'Add':
+            addr = request.form['addr'].lstrip().rstrip()
+            f = io.open('blastlist.txt', 'a', encoding="utf-8")
+            f.write(addr.decode('utf-8') + u'\r\n')
+            f.close()
+            return render_template('listadded.html',addr=addr)
+        elif request.form['submit'] == 'Remove':
+            addr = request.form['addr'].lstrip().rstrip()
+            f = io.open('blastlist.txt', 'r', encoding="utf-8")
+            lines = f.readlines()
+            f.close()
+            f = io.open('blastlist.txt', 'w', encoding="utf-8")
+            for line in lines:
+                if addr not in line:
+                    f.write(line.decode('utf-8'))
+            f.close()
+            return render_template('listremoved.html',addr=addr)
 
 @app.route('/letter', methods=['POST'])
 def upload_letter():

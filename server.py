@@ -35,6 +35,22 @@ def admin_handler(data,log):
     log.write(u'Forwarded.\r\n')
     return
 
+#Forwards emails sent to list@margymail.com from permitted senders to blastlist
+def list_handler(data,log):
+    sl = io.open('authorized', 'r,', encoding='utf-8')
+    auth = 0
+    for line in sl:
+        if replyadr.lower() in line.lower():
+            auth = 1
+    sl.close
+    if auth == 0:
+        EmailUtils.text_message('list@margymail.com',replyadr,'Unauthorized','You are not authorized to use this list.')
+    elif auth == 1:
+        bl = io.open('blastlist.txt','r', encoding='utf-8')
+        for addr in bl:
+            EmailUtils.forward_message(data,addr)
+        bl.close
+
 #Replies with an error if the mailto code is too short and adds address to strikelist (for potential blacklisting)
 def too_short_handler(replyadr,recipient,log):
     bl = io.open('blacklist', 'ab+', encoding="utf-8")
@@ -157,6 +173,9 @@ class MargySMTPServer(smtpd.SMTPServer):
                 print 'Blacklisted.'
                 blisted = 1
         bl.close()
+        if recipient.lower() == 'list':
+            list_handler(data,log)
+            blisted = 1
         if blisted == 0:
             for addr in rcpttos: #handle multiple addresses
                 recipient = re.match(recip, addr).group(1)
