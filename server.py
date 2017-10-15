@@ -36,8 +36,8 @@ def admin_handler(data,log):
     return
 
 #Forwards emails sent to list@margymail.com from permitted senders to blastlist
-def list_handler(data,log):
-    sl = io.open('authorized', 'r,', encoding='utf-8')
+def list_handler(data,log,replyadr):
+    sl = io.open('authorized', 'r', encoding='utf-8')
     auth = 0
     for line in sl:
         if replyadr.lower() in line.lower():
@@ -53,7 +53,7 @@ def list_handler(data,log):
 
 #Replies with an error if the mailto code is too short and adds address to strikelist (for potential blacklisting)
 def too_short_handler(replyadr,recipient,log):
-    bl = io.open('blacklist', 'ab+', encoding="utf-8")
+    bl = io.open('blacklist', 'a+', encoding="utf-8")
     sl = io.open('strikelist', 'r', encoding="utf-8")
     stwo = 0
     for line in sl: #checks if address already strikelisted
@@ -73,7 +73,7 @@ def too_short_handler(replyadr,recipient,log):
         sl.close()
     else:
         log.write(u'Strike for ' + replyadr + '.\r\n')
-        sl = io.open('strikelist', 'ab+', encoding="utf-8")
+        sl = io.open('strikelist', 'a+', encoding="utf-8")
         sl.write(replyadr + u'\r\n')
         sl.close()
     bl.close()
@@ -173,13 +173,12 @@ class MargySMTPServer(smtpd.SMTPServer):
                 print 'Blacklisted.'
                 blisted = 1
         bl.close()
-        if recipient.lower() == 'list':
-            list_handler(data,log)
-            blisted = 1
         if blisted == 0:
             for addr in rcpttos: #handle multiple addresses
                 recipient = re.match(recip, addr).group(1)
-                if ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or MARGY@margymail.com
+                if recipient.lower() == 'list':
+                    list_handler(data,log,replyadr)
+                elif ( recipient.lower() == 'admin' or recipient.lower() == 'postmaster' or recipient.lower() == 'abuse' or recipient.lower() == 'margy' ): #for emails sent to admin@ or postmaster@ or abuse@ or MARGY@margymail.com
                     admin_handler(data,log)
                 else:
                     if ( recipient.lower() != 'sales' and recipient.lower() != 'info' and recipient.lower() != 'xderia' ): #ignores emails to sales@, info@ and xderia@
@@ -218,17 +217,20 @@ class MargySMTPServer(smtpd.SMTPServer):
                                         afn = array[3].replace('_', ' ') #applicant's first name
                                         aln = array[4].replace('_', ' ') #applicant's last name
                                         aem = array[5] #applicant's email address
-                                        sentto = "" #creates an empty variable for whitelisted addresses that will receive attachment
                                         failed = [] #creates an empty list for non-whitelisted addresses that will not receive attachment
+                                        for match in matches:
+                                            if ( key == 'B8NUTB85i' ): #allows for test deliveries of test letter file to any address
+                                                delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log)
                                         for match in matches + [replyadr]: #checks each email address in the body and the reply-to address against the whitelist
-                                           wl = io.open('static/whitelist.txt', 'r', encoding="utf-8")
-                                           for line in wl:
-                                               if ( match.lower() == line.rstrip().lower() and match not in sentto.strip().lower() ):
-                                                   delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log)
-                                                   sentto += match + ' ' #adds to the variable that contains whitelisted addresses that have been sent attachment
-                                               else:
-                                                   failed.append(match) #adds to the list of non-whitelisted addresses that have not been sent attachment
-                                           wl.close()
+                                            sentto = "" #creates an empty variable for whitelisted addresses that will receive attachment
+                                            wl = io.open('static/whitelist.txt', 'r', encoding="utf-8")
+                                            for line in wl:
+                                                if ( match.lower() == line.rstrip().lower() and match not in sentto.strip().lower() ):
+                                                        delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log)
+                                                        sentto += match + ' ' #adds to the variable that contains whitelisted addresses that have been sent attachment
+                                                else:
+                                                    failed.append(match) #adds to the list of non-whitelisted addresses that have not been sent attachment
+                                            wl.close()
                                         fsent = "" #creates an empty variable for...
                                         for miss in failed: #...deduplication and removal of reply-to address from the list of failed recipients
                                             if ( miss.lower() != replyadr.lower() and miss.lower() not in sentto.strip().lower() and miss.lower() not in fsent.strip().lower() ):
@@ -246,7 +248,7 @@ class MargySMTPServer(smtpd.SMTPServer):
             return
 
 #Listen to port 25 ( 0.0.0.0 can be replaced by the ip of your server but that will work with 0.0.0.0 )
-server = MargySMTPServer(('0.0.0.0', 25), None)
+server = MargySMTPServer((sys.argv[1], 25), None)
 
 # Wait for incoming emails
 asyncore.loop()

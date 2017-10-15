@@ -1,0 +1,22 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[branch "master-old"]
+	remote = https://github.com/davidfaraci/margy
+	merge = refs/heads/master
+[remote "origin"]
+	url = https://github.com/davidfaraci/margy
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	pushurl = https://github.com/opentower/margy.git
+	pushurl = https://github.com/davidfaraci/margy.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "alt"]
+	url = ssh://git@208.58.214.213/home/git/margy
+	fetch = +refs/heads/*:refs/remotes/alt/*
+[remote "all"]
+    url = https://github.com/davidfaraci/margy
+    url = ssh://git@208.58.214.213/home/git/margy.git
