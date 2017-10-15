@@ -218,11 +218,12 @@ class MargySMTPServer(smtpd.SMTPServer):
                                         aln = array[4].replace('_', ' ') #applicant's last name
                                         aem = array[5] #applicant's email address
                                         failed = [] #creates an empty list for non-whitelisted addresses that will not receive attachment
+                                        sentto = "" #creates an empty variable for whitelisted addresses that will receive attachment
                                         for match in matches:
                                             if ( key == 'B8NUTB85i' ): #allows for test deliveries of test letter file to any address
                                                 delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log)
+                                                sentto += match + ' ' #adds to the variable that contains whitelisted addresses that have been sent attachment
                                         for match in matches + [replyadr]: #checks each email address in the body and the reply-to address against the whitelist
-                                            sentto = "" #creates an empty variable for whitelisted addresses that will receive attachment
                                             wl = io.open('static/whitelist.txt', 'r', encoding="utf-8")
                                             for line in wl:
                                                 if ( match.lower() == line.rstrip().lower() and match not in sentto.strip().lower() ):
