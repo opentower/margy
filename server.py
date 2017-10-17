@@ -60,7 +60,7 @@ def too_short_handler(replyadr,recipient,log):
         if replyadr.lower() in line.lower():
             strikes += 1
     sl.close()
-    if strikes >= 5: #5 strikes and you're blacklisted
+    if strikes >= 2: #blacklists on third strike
         log.write(u'Strikelisted address ' + replyadr + u' added to blacklist.\r\n')
         bl.write(replyadr + '\r\n')
         sl = io.open('strikelist', 'r+', encoding="utf-8")
@@ -173,6 +173,17 @@ class MargySMTPServer(smtpd.SMTPServer):
                 print 'Blacklisted.'
                 blisted = 1
         bl.close()
+        if blisted == 1: #handles emails from blacklisted addresses
+            warned = io.open('warned', 'r', encoding="utf-8") #checks whether this address has already been warned it was blacklisted
+            wrn = 0
+            for line in warned:
+                if replyadr.lower() in line.lower():
+                    wrn = 1
+            if wrn == 0: #warns previously unwarned blacklisted addresses
+                EmailUtils.text_message('MARGY@margymail.com',replyadr,'BLACKLISTED','You have sent too many nonstandard emails to this system; further emails from your address will not be processed. If you believe this is an error, please contact MARGY adminstration.')
+                warned = io.open('warned', 'a+', encoding="utf-8") #adds reply-to address to list of warned addresses
+                warned.write(replyadr + u'\r\n')
+                warned.close()
         if blisted == 0:
             for addr in rcpttos: #handle multiple addresses
                 recipient = re.match(recip, addr).group(1)
