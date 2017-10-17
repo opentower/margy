@@ -2,9 +2,12 @@
 import smtplib
 import email
 import re
+from email import charset
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+
+charset.add_charset('utf-8',charset.SHORTEST,charset.QP)
 
 class EmailUtils:
     email_pattern = re.compile('([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+')
