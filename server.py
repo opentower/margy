@@ -51,18 +51,18 @@ def list_handler(data,log,replyadr):
             EmailUtils.forward_message(data,addr)
         bl.close
 
-#Replies with an error if the mailto code is too short and adds address to strikelist (for potential blacklisting)
+#Replies with an error if the mailto code is too short or has no underscore, and adds address to strikelist (for potential blacklisting)
 def too_short_handler(replyadr,recipient,log):
     bl = io.open('blacklist', 'a+', encoding="utf-8")
     sl = io.open('strikelist', 'r', encoding="utf-8")
-    stwo = 0
+    strikes = 0
     for line in sl: #checks if address already strikelisted
         if replyadr.lower() in line.lower():
-            log.write(u'Strikelisted address ' + replyadr + u' added to blacklist.\r\n')
-            bl.write(replyadr + '\r\n')
-            stwo = 1
+            strikes += 1
     sl.close()
-    if stwo == 1:
+    if strikes >= 5: #5 strikes and you're blacklisted
+        log.write(u'Strikelisted address ' + replyadr + u' added to blacklist.\r\n')
+        bl.write(replyadr + '\r\n')
         sl = io.open('strikelist', 'r+', encoding="utf-8")
         slcont = sl.readlines()
         sl.seek(0)
@@ -81,7 +81,7 @@ def too_short_handler(replyadr,recipient,log):
         shorttxt = render_template('code_failure.txt',code=recipient)
         short = render_template('code_failure.html',code=recipient)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',shorttxt,short)
-    log.write(u'Too short.\r\n')
+    log.write(u'Too short or no underscore.\r\n')
     return
 
 #Replies with an error if no match is found for the mailto code in metadata.txt
@@ -182,7 +182,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                     admin_handler(data,log)
                 else:
                     if ( recipient.lower() != 'sales' and recipient.lower() != 'info' and recipient.lower() != 'xderia' ): #ignores emails to sales@, info@ and xderia@
-                        if len(recipient) < 11: #makes sure the mailto code isn't too short
+                        if ( len(recipient) < 11 or '_' not in recipient ): #makes sure the mailto code isn't too short and includes an underscore
                             too_short_handler(replyadr,recipient,log)
                         else:
                             filecode = recipient[:-10] #scrapes all but the last 10 characters of the mailto code to serve as filecode (e.g., 'Test' from Test_123456789)
