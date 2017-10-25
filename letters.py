@@ -5,10 +5,19 @@ from flask.ext.mobility.decorators import mobile_template
 from outgoing_email import EmailUtils
 from encryption import f_encrypt
 import io, os, sys, re
+from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__, static_url_path='')
+auth = HTTPBasicAuth()
 Mobility(app)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #sets max size of 16 MB for uploads
+
+users = {}
+fileloc = 'login'
+with open(fileloc) as i:
+     for line in i:
+          (key, val) = line.split()
+          users[key] = val
 
 @app.route('/') #handles requests for http://margymail.com
 def home():
@@ -65,6 +74,26 @@ def blastlist(email):
 @app.route('/storage/<path:path>') #URL handler for public storage directory
 def storage(path):
     return send_from_directory('storage', path)
+
+@auth.get_password #password protection for admin page
+def get_pw(username):
+    if username in users:
+        return users.get(username)
+    return None
+
+@app.route('/admin') #admin only
+@auth.login_required
+def admin():
+    return render_template('admin.html')
+
+@app.route('/wladd', methods=['POST']) #adds addresses to whitelist (admin only, password protected)
+def wladd():
+    if request.method == 'POST':
+        addr = request.form['addr'].lstrip().rstrip()
+        f = io.open('static/whitelist.txt', 'a', encoding="utf-8")
+        f.write(addr.decode('utf-8') + u'\r\n')
+        f.close()
+        return render_template('wladd.html',addr=addr)
 
 @app.route('/unsub', methods=['POST']) #adds unsubscriber emails to unsubscriber list and removes from whitelist
 def unsub():
