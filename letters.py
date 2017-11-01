@@ -146,7 +146,7 @@ def upload_letter():
         rlncode = rln.replace(" ", "_")
         afncode = afn.replace(" ", "_")
         alncode = aln.replace(" ", "_")
-        codename = aln + rln #Assigns Applicant's Last Name and Recommender's Last Name as the fist part of the letter's file name
+        codename = alncode + rlncode #Assigns Applicant's Last Name and Recommender's Last Name as the fist part of the letter's file name
         d = io.open('metadata.txt', 'r', encoding="utf-8")
         num = 0
         for line in d: #checks whether there are other lines in the metadata with the same Last Names combination
