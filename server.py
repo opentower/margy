@@ -10,10 +10,14 @@ import os
 import re
 import PyPDF2
 import StringIO
+import datetime
 from outgoing_email import EmailUtils
 from flask import Flask, render_template, request
 from email.parser import Parser
 from encryption import f_decrypt
+
+def timeStamped(fname, fmt='%Y-%m-%d-%H-%M-%S_{fname}'):
+    return datetime.datetime.now().strftime(fmt).format(fname=fname)
 
 app = Flask(__name__)
 
@@ -153,8 +157,9 @@ def sender_confirmation_handler(replyadr,rfn,rln,afn,aln,cfn,sentto,fsent,log):
 
 class MargySMTPServer(smtpd.SMTPServer):
     def process_message(self, peer, mailfrom, rcpttos, data):
-        log = io.open('serverlog.txt', 'a', encoding="utf-8") #The log will be removed once MARGY is out of beta.
-        log.write(u'\r\n')
+        now = datetime.datetime.now().strftime("%m.%d.%Y %H:%M:%S")
+        log = io.open('serverlog.txt', 'a', encoding="utf-8")
+        log.write(u'\r\n' + now + u'\r\n')
         print 'Receiving...'
         parser = Parser()
         msg = parser.parsestr(data)
