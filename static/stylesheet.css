@@ -118,6 +118,7 @@ button:focus {outline:0;}
 .big { text-align: center; font-size: 1.2em; }
 .question { font-style: italic; margin:0 0 .5em 0; }
 .txtinput { margin: .1em 0 .5em 0; font-size: 1.1em; }
+.long { width: 500px; }
 .less { margin: 0 0 .5em 0; }
 .txt { margin:0 0 1em 0; text-align: justify; }
 .txt ol { margin:.25em 0 .5em 0; }

@@ -133,7 +133,20 @@ def add():
             f.close()
             return render_template('listremoved.html',addr=addr)
 
-@app.route('/letter', methods=['POST'])
+@app.route('/addrequest') # handles requests for http://margymail.com/addrequest
+def addrequest():
+    return render_template('addrequest.html')
+
+@app.route('/request', methods=['POST']) # sends requests for whitelist additions
+def wlrequest():
+    if request.method == 'POST':
+        addr = request.form['addr'].lstrip().rstrip()
+        ad = request.form['ad'].lstrip().rstrip()
+        reply = request.form['reply'].lstrip().rstrip()
+        EmailUtils.text_message('MARGY@margymail.com','faraci@gmail.com','Whitelist Addition Request',addr + '\r\n' + ad + '\r\n' + reply)
+        return render_template('requested.html')
+
+@app.route('/letter', methods=['POST']) # handles uploads
 def upload_letter():
     if request.method == 'POST':
         rfn = request.form['rec_fname'].lstrip().rstrip() #assigns input text to variables; this is Recommender's First Name
