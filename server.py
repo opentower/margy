@@ -166,7 +166,8 @@ class MargySMTPServer(smtpd.SMTPServer):
         matches = [] #initialize matches for accumulation
         for part in msg.walk(): #get matches only from text/html and text/plain parts of an email
             if part.get_content_type() in ['text/plain','text/html']:
-                matches = matches + re.findall(email,part.get_payload(decode=True))
+		decoded = part.get_payload(decode=True).decode('utf-8')
+                matches = matches + re.findall(email,decoded)
         matches = list(set(matches)) #deduplicate match list
         if 'reply-to' in msg: replyadr = msg['reply-to']
         else: replyadr = str(mailfrom).decode('utf-8') #checks for a reply-to address; if not present, assigns sender as reply-to address
@@ -252,7 +253,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                                         for miss in failed: #...deduplication and removal of reply-to address from the list of failed recipients
                                             if ( miss.lower() != replyadr.lower() and miss.lower() not in sentto.strip().lower() and miss.lower() not in fsent.strip().lower() ):
                                                 fsent += miss + ' '
-                                                log.write(u'Delivery failed to ' + miss.decode('utf-8') + u'.\r\n')
+                                                log.write(u'Delivery failed to ' + miss + u'.\r\n')
                                         if sentto == "": #deals with cases where there were no whitelisted addresses
                                             not_whitelisted_handler(replyadr,log)
                                         else: #sends confirmations to the applicant and the reply-to address (if attachment was sent anywhere)

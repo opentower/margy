@@ -4,6 +4,7 @@ import email
 import re
 from email import charset
 from email.mime.text import MIMEText
+from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
@@ -36,7 +37,7 @@ class EmailUtils:
         msg['To'] = to
 #      Note we are usng port 6625 here as we've changed the Postfix port
         s = smtplib.SMTP('localhost','6625')
-        s.sendmail(mfrom, to, msg.as_string())
+        s.sendmail(mfrom, to.encode('utf-8'), msg.as_string())
         s.quit()
         return
 
@@ -61,7 +62,7 @@ class EmailUtils:
                 else: pdf.add_header('Content-Disposition','attachment')
                 msg.attach(pdf)
                 s = smtplib.SMTP('localhost','6625')
-                s.sendmail(mfrom, to, msg.as_string())
+                s.sendmail(mfrom, to.encode('utf-8'), msg.as_string())
                 s.quit()
                 return
             else:
@@ -70,7 +71,7 @@ class EmailUtils:
                 body['To'] = to
                 body['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
                 s = smtplib.SMTP('localhost','6625')
-                s.sendmail(mfrom, to, body.as_string())
+                s.sendmail(mfrom, to.encode('utf-8'), body.as_string())
                 s.quit()
                 return
         else:
@@ -86,7 +87,7 @@ class EmailUtils:
                 else: pdf.add_header('Content-Disposition','attachment')
                 msg.attach(pdf)
                 s = smtplib.SMTP('localhost','6625')
-                s.sendmail(mfrom, to, msg.as_string())
+                s.sendmail(mfrom, to.encode('utf-8'), msg.as_string())
                 s.quit()
                 return
             else:
@@ -95,6 +96,6 @@ class EmailUtils:
                 ptpart['To'] = to
                 ptpart['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
                 s = smtplib.SMTP('localhost','6625')
-                s.sendmail(mfrom, to, ptpart.as_string())
+                s.sendmail(mfrom, to.encode('utf-8'), ptpart.as_string())
                 s.quit()
                 return
