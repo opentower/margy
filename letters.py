@@ -309,9 +309,9 @@ def delivery():
                 EmailUtils.rich_message('MARGY@margymail.com',mto,subject,toedutxt,toedu,data,name)
                 i += 1
             if approved and usable:
-                log.write(str(len(senttol)) + u' deliveries made to: ' + u'; '.join(approved) +  u'\r\n')
                 files = '; '.join(name)
                 sentto = '; '.join(senttol)
+                log.write(str(len(usable)) + u' deliveries made to: ' + sentto +  u'\r\n')
                 toapptxt = render_template('del_confirm.txt',recs=recs,app=applicant,cfn=files,sentto=sentto,failed='')
                 toapp = render_template('del_confirm.html',recs=recs,app=applicant,cfn=files,sentto=sentto,failed='')
                 EmailUtils.rich_message('MARGY@margymail.com',aem,'Letter Delivery Confirmation',toapptxt,toapp)
