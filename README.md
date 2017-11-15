@@ -1,12 +1,15 @@
 # Welcome to MARGY!
 
-MARGY is a **FREE** service for managing confidential letters of recommendation on the academic job market. We collect minimal email data which is largely  anonymized. (When a delivery is made, the system logs how many letters were sent to that address, but not which letters they are. The system also logs information on failed deliveries, including missing files or metadata and non-whitelisted addresses, so that we can help address user problems. Finally, when the system receives an automated message letting it know that an email has failed to send, we cannot avoid logging what email addresses were involved; this is the only time we can see both who sent something and to where.)
+MARGY is a **FREE** service for managing confidential letters of recommendation on the academic job market.
 
 Feedback on the site design or notes on functionality continue to be greatly appreciated. If you are a coder, you can also check out our source code on [GitHub](https://github.com/davidfaraci/margy).
 
 For bugs/specific issues, please create an "Issue" on GitHub. Go to [https://github.com/davidfaraci/margy/issues](https://github.com/davidfaraci/margy/issues) and click "New Issue."
 
 For comments and general suggestions (or if you find a bug but would prefer not to deal with the Issue system), send an email to [admin@margymail.com](mailto:admin@margymail.com).
+
+#### Anonymity
+MARGY logs minimal data which is largely anonymized. When a delivery is made, the system logs how many letters were sent to what addresses, but not which letters were sent. The system also logs information on failed deliveries, including missing files or metadata and non-whitelisted addresses, so that we can help address user problems. Finally, when the system receives an automated message letting it know that an email has failed to send, we cannot avoid logging what email addresses were involved; this is the only time we log both who sent something and to where.
 
 
 -----
