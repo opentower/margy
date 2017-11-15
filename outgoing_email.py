@@ -55,12 +55,13 @@ class EmailUtils:
                 msg['Subject'] = topic
                 msg['From'] = mfrom
                 msg['To'] = to
-                msg['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
+                msg['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe/' + to + '>'
                 msg.attach(body)
-                pdf=MIMEApplication(data,'pdf')
-                if name: pdf.add_header('Content-Disposition','attachment',filename=name)
-                else: pdf.add_header('Content-Disposition','attachment')
-                msg.attach(pdf)
+                for f,n in zip(data,name) :
+                    pdf=MIMEApplication(f,'pdf')
+                    if n != '': pdf.add_header('Content-Disposition','attachment',filename=n)
+                    else: pdf.add_header('Content-Disposition','attachment')
+                    msg.attach(pdf)
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to.encode('utf-8'), msg.as_string())
                 s.quit()
@@ -69,7 +70,7 @@ class EmailUtils:
                 body['Subject'] = topic
                 body['From'] = mfrom
                 body['To'] = to
-                body['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
+                body['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe/' + to + '>'
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to.encode('utf-8'), body.as_string())
                 s.quit()
@@ -80,12 +81,13 @@ class EmailUtils:
                 msg['Subject'] = topic
                 msg['From'] = mfrom
                 msg['To'] = to
-                msg['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
+                msg['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe/' + to + '>'
                 msg.attach(ptpart)
-                pdf=MIMEApplication(data,'pdf')
-                if name: pdf.add_header('Content-Disposition','attachment',filename=name)
-                else: pdf.add_header('Content-Disposition','attachment')
-                msg.attach(pdf)
+                for f,n in zip(data,name) :
+                    pdf=MIMEApplication(f,'pdf')
+                    if n != '': pdf.add_header('Content-Disposition','attachment',filename=n)
+                    else: pdf.add_header('Content-Disposition','attachment')
+                    msg.attach(pdf)
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to.encode('utf-8'), msg.as_string())
                 s.quit()
@@ -94,7 +96,7 @@ class EmailUtils:
                 ptpart['Subject'] = topic
                 ptpart['From'] = mfrom
                 ptpart['To'] = to
-                ptpart['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe' + to + '>'
+                ptpart['List-Unsubscribe'] = '<mailto:admin@margymail.com>,<https://margymail.com/unsubscribe/' + to + '>'
                 s = smtplib.SMTP('localhost','6625')
                 s.sendmail(mfrom, to.encode('utf-8'), ptpart.as_string())
                 s.quit()

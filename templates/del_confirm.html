@@ -1,14 +1,14 @@
 <html>
 <head>
-<title>Letter Received</title>
+<title>Letters Delivered</title>
 </head>
 <body style="line-height: 1.3em;">
 
-<p style="font-family: georgia; font-size: 1.1em; letter-spacing: .2px; margin: 0 0 1em 0;">MARGY has made the following delivery:</p>
+<p style="font-family: georgia; font-size: 1.1em; letter-spacing: .2px; margin: 0 0 1em 0;">MARGY has made the following deliveries:</p>
 <p style="font-family: georgia; font-size: 1.1em; letter-spacing: .2px; margin: 0 0 1em 0;">
-    <b>File Name:</b> {{ cfn }}<br>
-    <b>Letter-Writer:</b> {{ rfn }} {{ rln }}<br>
-    <b>Applicant:</b> {{ afn }} {{ aln }}<br>
+    <b>File Names:</b> {{ cfn }}<br>
+    <b>Letter-Writers:</b> {{ recs }}<br>
+    <b>Applicant:</b> {{ app }}<br>
     <b>Recipients:</b> {{ sentto }}<br>
     {% if failed != "" %}
     <b>Not Sent:</b> {{ failed }}

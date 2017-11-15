@@ -46,6 +46,16 @@ table.topbar td {
     margin: 0 0 0 0;
 }
 
+table.delivery {
+    padding: 0;
+    margin: 0;
+}
+
+table.delivery td {
+    padding: 0 15px 0 0;
+    margin: 0;
+}
+
 .button {
     width: 160px;
     background-color: #FFFFFF;
@@ -108,6 +118,7 @@ button:focus {outline:0;}
 .b { font-weight: bold; }
 .u { text-decoration: underline; }
 .i { font-style: italic; }
+.hl { background-color: #E8E8E8; }
 .sig { font-family: "typekeys"; font-size: 2.5em; }
 .mtitle a { color: black !important; text-decoration: none; }
 .mtitle { font-family: "typekeys"; font-size: 4.5em; text-align: center; margin: 0 0 35px 0; }
@@ -118,6 +129,7 @@ button:focus {outline:0;}
 .big { text-align: center; font-size: 1.2em; }
 .question { font-style: italic; margin:0 0 .5em 0; }
 .txtinput { margin: .1em 0 .5em 0; font-size: 1.1em; }
+.medium { width: 300px; }
 .long { width: 500px; }
 .less { margin: 0 0 .5em 0; }
 .txt { margin:0 0 1em 0; text-align: justify; }
@@ -130,6 +142,7 @@ button:focus {outline:0;}
 .mouse { cursor: default; }
 .red { color: red; }
 .green { color: green; }
+.blue { color: blue; }
 .credits { text-align: center; }
 .keys { font-family: typekeys; font-size: 1.1em; }
 .footer { font-size: .8em; text-align: right; padding: 0 0 5px 0; margin: 0; }

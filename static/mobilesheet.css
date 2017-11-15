@@ -148,6 +148,7 @@ label.browse input[type="file"] {
 .mouse { cursor: default; }
 .red { color: red; }
 .green { color: green; }
+.blue { color: blue; }
 .credits { text-align: center; }
 .keys { font-family: typekeys; font-size: 1.1em; }
 .footer { font-size: 1.5em; text-align: right; }

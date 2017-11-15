@@ -1,5 +1,9 @@
 Dear {{ afn }} {{ aln }},
 
-MARGY has received a confidential letter of recommendation for you from {{ rfn }} {{ rln }}. To have the letter delivered to {email addresses}, send an email to {{ codename }}@margymail.com with {email addresses} in the email body. For more detailed instructions, visit https://margymail.com/instructions. For questions, or if you believe you received this email in error, please contact admin@margymail.com.
+MARGY has received a confidential letter of recommendation for you from {{ rfn }} {{ rln }}. Your letter's unique mailto code is {{ codename }}.  You can deliver this letter to < email addresses > by sending an email to {{ codename }}@margymail.com with < email addresses > in the email body. Alternatively, or to send multiple letters, go to https://margymail.com/deliver. For further instructions, visit https://margymail.com/instructions.
+
+If you have not already done so, we also recommend that you join the MARGY email list, which we use to alert users to new features, outages, etc. You can add your email to the list at https://margymail.com/blastlist/{{ aem }}.
+
+For questions, or if you believe you received this email in error, please contact admin@margymail.com.
 
 MARGY

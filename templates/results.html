@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% block contents %}
+<p class='txt b'>Delivery Results</p>
+{% if sentto == '' %}
+<p class=txt>No deliveries made.</p>
+{% else %}
+<p class=txt>Deliveries made to whitelisted addresses <span class=hl>{{ sentto }}</span> with letters from <span class=hl>{{ recs }}</span> for applicant <span class=hl>{{ app }}</span>.</p>
+<p class=txt>Confirmation sent to <span class=hl>{{ aem }}</span>{% if addr == '' %}.</p>{% else %}and <span class=hl>{{ addr }}</span>.</p>{% endif %}
+{% endif %}
+
+{% if failed or nmd or nf or corrupt %}
+<p class=txt><span class=u>Errors:</span><br>
+{% if failed %}
+    Non-Whitelisted Addresses: {{ failed }}<br>
+{% endif %}
+{% if nmd %}
+    Missing Metadata: {{ nmd }}<br>
+{% endif %}
+{% if nf %}
+    Missing File: {{ nf }}<br>
+{% endif %}
+{% if corrupt %}
+    Corrupt Files: {{ corrupt }}<br>
+{% endif %}
+{% if nmd or nf or corrupt %}
+    <br>Note that any requested deliveries not mentioned above did not experience any errors, but MARGY did not deliver them so as to avoid partial deliveries.
+{% endif %}
+</p>
+{% endif %}
+{% endblock %}

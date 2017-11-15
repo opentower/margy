@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% block contents %}
+<p class=spaced>Use this form to deliver 1-10 letters to 1-10 whitelisted addresses each <span class=b>for a single applicant</span>. Confirmation will automatically be sent to the applicant&rsquo;s email address (the one provided when the letter was uploaded). If you would like confirmation sent to another address as well, you may enter it below.</p>
+
+<form id=upload action="/delivery" method="post" enctype="multipart/form-data">
+    <table class=delivery>
+        <tr>
+            <td>Mailto Codes:</td>
+            <td>Delivery Addresses:</td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc0" id="mc0" required></td>
+            <td><input class='medium txtinput' type=text name="del0" id="del0" required></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc1" id="mc1"></td>
+            <td><input class='medium txtinput' type=text name="del1" id="del1"></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc2" id="mc2"></td>
+            <td><input class='medium txtinput' type=text name="del2" id="del2"></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc3" id="mc3"></td>
+            <td><input class='medium txtinput' type=text name="del3" id="del3"></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc4" id="mc4"></td>
+            <td><input class='medium txtinput' type=text name="del4" id="del4"></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc5" id="mc5"></td>
+            <td><input class='medium txtinput' type=text name="del5" id="del5"></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc6" id="mc6"></td>
+            <td><input class='medium txtinput' type=text name="del6" id="del6"></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc7" id="mc7"></td>
+            <td><input class='medium txtinput' type=text name="del7" id="del7"></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc8" id="mc8"></td>
+            <td><input class='medium txtinput' type=text name="del8" id="del8"></td>
+        </tr>
+        <tr>
+            <td><input class='medium txtinput' type=text name="mc9" id="mc9"></td>
+            <td><input class='medium txtinput' type=text name="del9" id="del9"></td>
+        </tr>
+    </table>
+    <p>Email Address for Confirmation:<br>
+        <input class='medium txtinput' type=text name="addr" id="addr"></p>
+    <button type="submit" class=upbutton>Submit</button>&nbsp;&nbsp;&nbsp;<img class=load src="https://margymail.com/storage/pulse.gif" alt='PULSE.GIF'>
+</form>
+{% block status %}
+{% endblock %}
+{% endblock %}

@@ -117,10 +117,11 @@ def corrupt_file_handler(replyadr,cfn,log):
 
 #Delivers the letter to a whitelisted address
 def delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log):
-    with app.app_context():
-       toedutxt = render_template('delivery.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,email=match)
-       toedu = render_template('delivery.html',rfn=rfn,rln=rln,afn=afn,aln=aln,email=match)
     applicant = afn + ' ' + aln
+    recs = rfn + ' ' + rln
+    with app.app_context():
+       toedutxt = render_template('delivery.txt',recs=recs,app=applicant,email=match)
+       toedu = render_template('delivery.html',recs=recs,rln=rln,app=applicant,email=match)
     subject = 'Letter Delivery for ' + applicant
     EmailUtils.rich_message('MARGY@margymail.com',match,subject,toedutxt,toedu,attach,cfn)
     log.write(u'Delivery made.\r\n')
@@ -137,18 +138,22 @@ def not_whitelisted_handler(replyadr,log):
 
 #Sends the applicant a confirmation noting whitelisted addresses sent to and any requested addresses not sent to
 def applicant_confirmation_handler(aem,rfn,rln,afn,aln,cfn,sentto,fsent,log):
+    recs = rfn + ' ' + rln
+    applicant = afn + ' ' + aln
     with app.app_context():
-        toapptxt = render_template('del_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,cfn=cfn,sentto=sentto,failed=fsent)
-        toapp = render_template('del_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,cfn=cfn,sentto=sentto,failed=fsent)
+        toapptxt = render_template('del_confirm.txt',recs=recs,app=applicant,cfn=cfn,sentto=sentto,failed=fsent)
+        toapp = render_template('del_confirm.html',recs=recs,app=applicant,cfn=cfn,sentto=sentto,failed=fsent)
     EmailUtils.rich_message('MARGY@margymail.com',aem,'Letter Delivery Confirmation',toapptxt,toapp)
     log.write(u'Confirmation sent.\r\n')
     return
 
 #Replies with a confirmation noting whitelisted addresses sent to and any requested addresses not sent to
 def sender_confirmation_handler(replyadr,rfn,rln,afn,aln,cfn,sentto,fsent,log):
+    recs = rfn + ' ' + rln
+    applicant = afn + ' ' + aln
     with app.app_context():
-        tosendertxt = render_template('del_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,cfn=cfn,sentto=sentto,failed=fsent)
-        tosender = render_template('del_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,cfn=cfn,sentto=sentto,failed=fsent)
+        tosendertxt = render_template('del_confirm.txt',recs=recs,app=applicant,cfn=cfn,sentto=sentto,failed=fsent)
+        tosender = render_template('del_confirm.html',recs=recs,app=applicant,cfn=cfn,sentto=sentto,failed=fsent)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Confirmation',tosendertxt,tosender)
     log.write(u'Confirmation sent.\r\n')
     return
@@ -175,7 +180,7 @@ class MargySMTPServer(smtpd.SMTPServer):
         blisted = 0
         for line in bl: #checks reply-to address against blacklist
             if replyadr.lower() in line.lower():
-                log.write(u'Email blocked from blacklisted address ' + replyadr + '.\r\n')
+                log.write(u'Email blocked from blacklisted address ' + replyadr + u'.\r\n')
                 print 'Blacklisted.'
                 blisted = 1
         bl.close()
@@ -216,12 +221,13 @@ class MargySMTPServer(smtpd.SMTPServer):
                             else:
                                 array = mdata.split() #creates a list out of the relevant line of metadata
                                 cfn = array[0] + '.pdf' #assigns the first item in the metadata list as the file name (should be the same as filecode)
+                                cfnl = [cfn]
                                 path = 'letters/' + cfn + '.aes' #the path to the file to be attached should be letters/[value of cfn].aes
                                 if not os.path.isfile(path): #checks whether there is such a file
                                     no_such_file_handler(replyadr,cfn,log)
                                 else:
-                                    attach = f_decrypt(path, key) #assigns decrypted file as attachment
-                                    maybepdf = StringIO.StringIO(attach) #checks to make sure the file isn't corrupt
+                                    attach = [f_decrypt(path, key)] #assigns decrypted file as attachment
+                                    maybepdf = StringIO.StringIO(attach[0]) #checks to make sure the file isn't corrupt
                                     try:
                                         PyPDF2.PdfFileReader(maybepdf)
                                     except PyPDF2.utils.PdfReadError:
@@ -238,13 +244,13 @@ class MargySMTPServer(smtpd.SMTPServer):
                                         sentto = "" #creates an empty variable for whitelisted addresses that will receive attachment
                                         for match in matches:
                                             if ( key == 'B8NUTB85i' ): #allows for test deliveries of test letter file to any address
-                                                delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log)
+                                                delivery_handler(match,rfn,rln,afn,aln,attach,cfnl,log)
                                                 sentto += match + ' ' #adds to the variable that contains whitelisted addresses that have been sent attachment
                                         for match in matches + [replyadr]: #checks each email address in the body and the reply-to address against the whitelist
                                             wl = io.open('static/whitelist.txt', 'r', encoding="utf-8")
                                             for line in wl:
                                                 if ( match.lower() == line.rstrip().lower() and match not in sentto.strip().lower() ):
-                                                        delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log)
+                                                        delivery_handler(match,rfn,rln,afn,aln,attach,cfnl,log)
                                                         sentto += match + ' ' #adds to the variable that contains whitelisted addresses that have been sent attachment
                                                 else:
                                                     failed.append(match) #adds to the list of non-whitelisted addresses that have not been sent attachment

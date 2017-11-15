@@ -1,8 +1,8 @@
 MARGY has made the following delivery:
 
-File Name: {{ cfn }}
-Letter-Writer: {{ rfn }} {{ rln }}
-Applicant: {{ afn }} {{ aln }}
+File Names: {{ cfn }}
+Letter-Writers: {{ recs }}
+Applicants: {{ app }}
 Recipients: {{ sentto }}
 {% if failed != "" %}
 Not Sent: {{ failed }}

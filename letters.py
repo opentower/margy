@@ -3,8 +3,11 @@ from flask import Flask, render_template, request, send_from_directory, g
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 from outgoing_email import EmailUtils
-from encryption import f_encrypt
+from encryption import f_encrypt, f_decrypt
+import PyPDF2
+import StringIO
 import io, os, sys, re
+import datetime
 from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__, static_url_path='')
@@ -27,6 +30,10 @@ def home():
 def newletter():
     return render_template('upload.html')
 
+@app.route('/deliver') # handles requests for http://margymail.com/deliver
+def deliver():
+    return render_template('deliver.html')
+
 @app.errorhandler(413) #renders error template for oversized files
 def too_big(error):
     return render_template('toobig.html'), 413
@@ -45,13 +52,9 @@ def questions():
 
 @app.route('/confidentiality') #handles requests for http://margymail.com/confidentiality
 def whitelist():
-    with io.open('static/whitelist.txt', 'r',encoding="utf-8") as f: #gets the contents of whitelist.txt so they can be displayed
+    with io.open('static/whitelist.txt', 'r', encoding="utf-8") as f: #gets the contents of whitelist.txt so they can be displayed
         data = f.read().replace('@', ' [at] ').replace('.', ' [dot] ')
     return render_template('confidentiality.html',data=data)
-
-@app.route('/donate') #handles requests for http://margymail.com/donate
-def donate():
-    return render_template('donate.html')
 
 @app.route('/thanks') #displays message of thanks to donors
 def thanks():
@@ -84,7 +87,9 @@ def get_pw(username):
 @app.route('/admin') #admin only
 @auth.login_required
 def admin():
-    return render_template('admin.html')
+    with io.open('unsubscribers.txt', 'r', encoding="utf-8") as f:
+        unsub = f.read()
+    return render_template('admin.html',unsub=unsub)
 
 @app.route('/wladd', methods=['POST']) #adds addresses to whitelist (admin only, password protected)
 def wladd():
@@ -185,3 +190,149 @@ def upload_letter():
                 htmlbody = render_template('rec_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,aem=aem,codename=mailto)
                 EmailUtils.rich_message('MARGY@margymail.com',aem,'Letter Received',txtbody,htmlbody) #sends an email to the applicant with their mailto code
                 return render_template('success.html',aem=aem,codename=codename) #displays a success message to the uploader
+
+@app.route('/delivery', methods=['POST']) # handles uploads
+def delivery():
+    if request.method == 'POST':
+        now = datetime.datetime.now().strftime("%m.%d.%Y %H:%M:%S")
+        log = io.open('httplog.txt', 'a', encoding="utf-8")
+        log.write(u'\r\n' + now + u'\r\n')
+        mc = []
+        mc.append(request.form['mc0'].lstrip().rstrip())
+        mc.append(request.form['mc1'].lstrip().rstrip())
+        mc.append(request.form['mc2'].lstrip().rstrip())
+        mc.append(request.form['mc3'].lstrip().rstrip())
+        mc.append(request.form['mc4'].lstrip().rstrip())
+        mc.append(request.form['mc5'].lstrip().rstrip())
+        mc.append(request.form['mc6'].lstrip().rstrip())
+        mc.append(request.form['mc7'].lstrip().rstrip())
+        mc.append(request.form['mc8'].lstrip().rstrip())
+        mc.append(request.form['mc9'].lstrip().rstrip())
+        da = []
+        da.append(request.form['del0'].lstrip().rstrip())
+        da.append(request.form['del1'].lstrip().rstrip())
+        da.append(request.form['del2'].lstrip().rstrip())
+        da.append(request.form['del3'].lstrip().rstrip())
+        da.append(request.form['del4'].lstrip().rstrip())
+        da.append(request.form['del5'].lstrip().rstrip())
+        da.append(request.form['del6'].lstrip().rstrip())
+        da.append(request.form['del7'].lstrip().rstrip())
+        da.append(request.form['del8'].lstrip().rstrip())
+        da.append(request.form['del9'].lstrip().rstrip())
+        addr = request.form['addr'].lstrip().rstrip().decode('utf-8')
+
+        approved = []
+        failed = []
+        for address in da: #checks input addresses against whitelist
+            if address != '':
+                wl = io.open('static/whitelist.txt', 'r', encoding="utf-8")
+                for line in wl:
+                    if ( address.lower() == line.rstrip().lower() and address.lower() not in approved ):
+                        approved.append(address) #adds to the list that contains whitelisted addresses
+                if ( address.lower() not in approved and address.lower() not in failed ):
+                    failed.append(address) #adds to the list of non-whitelisted addresses
+                wl.close()
+
+        unusable = []
+        usable = []
+        key = []
+        err = 0
+        for code in mc: #checks input mailto codes against metadata
+            if code != '':
+                metadata = io.open('metadata.txt', 'r', encoding="utf-8")
+                for line in metadata:
+                    if ( len(code) > 11 and code[:-10].lower() == line.rstrip().lower()[:len(code[:-10])] and line not in usable ):
+                        usable.append(line)
+                        key.append(code[-9:])
+                if ( code[-9:] not in key and code not in unusable ):
+                    unusable.append(code)
+                    err = 1
+                metadata.close()
+
+        nofile = []
+        corrupt = []
+        attach = []
+        data = []
+        name = []
+        i = 0
+        for entry in usable:
+            array = entry.split() #creates a list out of the relevant line of metadata
+            cfn = array[0] + '.pdf' #assigns the first item in the metadata list as the file name (should be the same as filecode)
+            path = 'letters/' + cfn + '.aes' #the path to the file to be attached should be letters/[value of cfn].aes
+            if not os.path.isfile(path): #checks whether there is such a file
+                nofile.append(cfn)
+                key.remove(key[i])
+                usable.remove(entry)
+                err = 1
+            else:
+                attach = f_decrypt(path, key[i]) #assigns decrypted file as attachment
+                maybepdf = StringIO.StringIO(attach) #checks to make sure the file isn't corrupt
+                try:
+                    PyPDF2.PdfFileReader(maybepdf)
+                except PyPDF2.utils.PdfReadError:
+                    corrupt.append(cfn)
+                    usable.remove(entry)
+                    key.remove(key[i])
+                    maybepdf.close()
+                    err = 1
+                else:
+                    data.append(attach)
+                    name.append(cfn)
+                    maybepdf.close()
+            i += 1
+
+        i = 0
+        recsl = []
+        recs = ''
+        senttol = []
+        sentto = ''
+        applicant = ''
+        aem = ''
+        if ( usable and approved and err != 1 ):
+            for address in approved:
+                mto = address.decode('utf-8')
+                for entry in usable:
+                    array = entry.split()
+                    rfn = array[1].replace('_', ' ').decode('utf-8') #assigns the items of the metadata list to variables; this is recommender's first name
+                    rln = array[2].replace('_', ' ').decode('utf-8') #recommender's last name
+                    rec = rfn + ' ' + rln
+                    if rec not in recsl: recsl.append(rec)
+                    afn = array[3].replace('_', ' ').decode('utf-8') #applicant's first name
+                    aln = array[4].replace('_', ' ').decode('utf-8') #applicant's last name
+                    applicant = afn + ' ' + aln
+                    aem = array[5].decode('utf-8') #applicant's email address
+                recs = '; '.join(recsl)
+                subject = 'Recommendation Letters for ' + applicant
+                toedutxt = render_template('delivery.txt',recs=recs,app=applicant,email=mto)
+                toedu = render_template('delivery.html',recs=recs,app=applicant,email=mto)
+                senttol.append(mto)
+                EmailUtils.rich_message('MARGY@margymail.com',mto,subject,toedutxt,toedu,data,name)
+                i += 1
+            if approved and usable:
+                log.write(str(len(sentto)) + u' deliveries made to: ' + u'; '.join(approved) +  u'\r\n')
+                files = '; '.join(name)
+                sentto = '; '.join(senttol)
+                toapptxt = render_template('del_confirm.txt',recs=recs,app=applicant,cfn=files,sentto=sentto,failed='')
+                toapp = render_template('del_confirm.html',recs=recs,app=applicant,cfn=files,sentto=sentto,failed='')
+                EmailUtils.rich_message('MARGY@margymail.com',aem,'Letter Delivery Confirmation',toapptxt,toapp)
+                if ( aem != addr and addr != '' ):
+                    EmailUtils.rich_message('MARGY@margymail.com',addr,'Letter Delivery Confirmation',toapptxt,toapp)
+
+        nf = '; '.join(nofile).decode('utf-8')
+        if nf != '':
+            log.write(u'Missing file: ' + nf + u'\r\n')
+
+        nwl = '; '.join(failed).decode('utf-8')
+        if nwl != '':
+            log.write(u'Non-whitelisted: ' + nwl + u'\r\n')
+
+        cor = '; '.join(corrupt).decode('utf-8')
+        if cor != '':
+            log.write(u'Corrupt: ' + cor + u'\r\n')
+
+        nmd = '; '.join(unusable).decode('utf-8')
+        if nmd != '':
+            log.write(u'Missing metadata: ' + nmd + u'\r\n')
+
+        log.close()
+        return render_template('results.html',recs=recs,app=applicant,corrupt=corrupt,failed=nwl,nmd=nmd,nf=nf,sentto=sentto,aem=aem,addr=addr)
