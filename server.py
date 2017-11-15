@@ -76,7 +76,7 @@ def too_short_handler(replyadr,recipient,log):
         sl.truncate()
         sl.close()
     else:
-        log.write(u'Strike for ' + replyadr + '.\r\n')
+        log.write(u'Strike for ' + replyadr + u'.\r\n')
         sl = io.open('strikelist', 'a+', encoding="utf-8")
         sl.write(replyadr + u'\r\n')
         sl.close()
@@ -85,7 +85,7 @@ def too_short_handler(replyadr,recipient,log):
         shorttxt = render_template('code_failure.txt',code=recipient)
         short = render_template('code_failure.html',code=recipient)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',shorttxt,short)
-    log.write(u'Too short or no underscore.\r\n')
+    log.write(recipient + u' too short or no underscore.\r\n')
     return
 
 #Replies with an error if no match is found for the mailto code in metadata.txt
@@ -94,7 +94,7 @@ def no_match_handler(replyadr,recipient,log):
         errortxt = render_template('code_failure.txt',code=recipient)
         error = render_template('code_failure.html',code=recipient)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',errortxt,error)
-    log.write(u'Not in metadata.\r\n')
+    log.write(recipient + u' not in metadata.\r\n')
     return
 
 #Replies with an error if no such file is found in letters/
@@ -103,7 +103,7 @@ def no_such_file_handler(replyadr,cfn,log):
         nofiletxt = render_template('file_failure.txt',cfn=cfn)
         nofile = render_template('file_failure.html',cfn=cfn)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',nofiletxt,nofile)
-    log.write(u'File not found.\r\n')
+    log.write(recipient + u': File not found.\r\n')
     return
 
 #Replies with an error if the file is corrupt
@@ -112,7 +112,7 @@ def corrupt_file_handler(replyadr,cfn,log):
         corrupttxt = render_template('corrupt_failure.txt',file=cfn)
         corrupt = render_template('corrupt_failure.html',file=cfn)
     EmailUtils.rich_message('MARGY@margymail.com',replyadr,'Letter Delivery Failure',corrupttxt,corrupt)
-    log.write(u'Corrupt file.\r\n')
+    log.write(recipient + u': Corrupt file.\r\n')
     return
 
 #Delivers the letter to a whitelisted address
@@ -124,7 +124,7 @@ def delivery_handler(match,rfn,rln,afn,aln,attach,cfn,log):
        toedu = render_template('delivery.html',recs=recs,rln=rln,app=applicant,email=match)
     subject = 'Letter Delivery for ' + applicant
     EmailUtils.rich_message('MARGY@margymail.com',match,subject,toedutxt,toedu,attach,cfn)
-    log.write(u'Delivery made.\r\n')
+    log.write(u'Delivery made to ' + match + u'.\r\n')
     return
 
 #Replies with an error if there are no whitelisted addresses present
@@ -266,7 +266,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                                             applicant_confirmation_handler(aem,rfn,rln,afn,aln,cfn,sentto,fsent,log)
                                             if ( replyadr.lower() != aem.lower()):
                                                sender_confirmation_handler(replyadr,rfn,rln,afn,aln,cfn,sentto,fsent,log)
-            log.write(u'End of log entry.')
+            log.write(u'End of log entry.\r\n')
             log.close()
             print 'Done.'
             return
