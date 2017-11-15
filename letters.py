@@ -46,15 +46,15 @@ def instructions():
 def detailed():
     return render_template('detailed.html')
 
-@app.route('/howto') #handles requests for How To... from within http://margymail.com/instructions
+@app.route('/faq') #handles requests for How To... from within http://margymail.com/instructions
 def questions():
-    return render_template('howto.html')
+    return render_template('faq.html')
 
-@app.route('/confidentiality') #handles requests for http://margymail.com/confidentiality
+@app.route('/whitelist') #handles requests for http://margymail.com/whitelist
 def whitelist():
     with io.open('static/whitelist.txt', 'r', encoding="utf-8") as f: #gets the contents of whitelist.txt so they can be displayed
         data = f.read().replace('@', ' [at] ').replace('.', ' [dot] ')
-    return render_template('confidentiality.html',data=data)
+    return render_template('whitelist.html',data=data)
 
 @app.route('/thanks') #displays message of thanks to donors
 def thanks():

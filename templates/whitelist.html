@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block contents %}
+<p class=spaced>To request that one or more addresses be added to the whitelist, fill out <a href="addrequest">this form</a> or send an email to <a href="mailto:admin@margymail.com">admin@margymail.com</a>, Subject: Whitelist Addition, with the relevant addresses and links to official job ads <span class=i>that ask that letters be sent to those addresses.</span></p>
+<p class=spaced>If your address is on the whitelist but you&rsquo;d like it <span class=i>not</span> to be, click <a href="unsubscribe">here</a>.</p>
+<p class="b less">Current Whitelist:</p>
+
+<!-- The data below is automatically read and displayed from whitelist.txt, which is what the server uses. -->
+
+<p class=wl>
+{{ data }}
+</p>
+{% endblock %}

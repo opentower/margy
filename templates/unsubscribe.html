@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% block contents %}
 <p class=b>Unsubscribe</p>
-<p class=txt>You may use this form to remove your email address from MARGY's whitelist. Please be advised that if you do this, job applicants will be unable to use the MARGY system to send letters of recommendation to the unsubscribed address. If you have questions or would like to be put back on the whitelist, please email <a href="mailto:admin@margymail.com">admin@margymail.com</a>.</p>
+<p class=txt>You may use this form to remove your email address from MARGY&rsquo;s whitelist. Please be advised that if you do this, job applicants will be unable to use the MARGY system to send letters of recommendation to the unsubscribed address. If you have questions or would like to be put back on the whitelist, please email <a href="mailto:admin@margymail.com">admin@margymail.com</a>.</p>
 <form id=unsub action="/unsub" method="post" enctype="multipart/form-data">
 <p>Email Address to be Removed:<br>
     <input class=txtinput value="{{ email }}" type=text name="addr" id="addr" required></p>

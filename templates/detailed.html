@@ -2,14 +2,13 @@
 {% block choice %}
 <p class="txt b">Detailed Instructions</p>
 <ol class=txt>
-    <li>Ask your letter-writers to go to <a href="upload">https://margymail.com/upload</a> and upload your letters of recommendation. They will be asked to input their full name, your full name, and your email address.
-    <li>Once a letter-writer has uploaded their letter, MARGY will encrypt the letter.
-    <li>For each letter, MARGY will send you an automated email including that letter&rsquo;s unique <span class=i>mailto code,</span> made up of the relevant last names, followed by your decryption key (for duplicate name combinations, an integer will follow the names). Thus, for example, a letter from John Doe for Jane Smith might be assigned mailto code SmithDoe2_Q9LZ67PR0. The non-key part of the mailto code will be your letter&rsquo;s filename (here, SmithDoe2.pdf).
-    <li>Gather the email addresses to which your letters are to be sent and go to <a href="confidentiality">https://margymail.com<span class=shy>&shy;</span>/confidentiality</a> to check whether those addresses are on MARGY&rsquo;s whitelist.
-    <li>If any are <span class=i>not</span>, go to <a href="addrequest">https://margymail.com/addrequest</a> or send an email to <a href="mailto:admin@margymail.com">admin@margymail.com</a>, Subject: Whitelist Addition, with those email  addresses and links to official job ads <span class=i>which ask that letters be sent to those email addresses.</span>
+    <li>Ask your letter-writers to go to <a href="upload"><span class=font>Upload a Letter</span></a> and upload your letters of recommendation. They will be asked to input their full name, your full name, and your email address.
+    <li>Wait for an email including your letter&rsquo;s unique <span class=i>mailto code,</span> made up of the relevant last names, followed by your letter&rsquo;s decryption key (for duplicate name combinations, an integer will follow the names). Thus, for example, a letter from John Doe for Jane Smith might be assigned mailto code SmithDoe2_Q9LZ67PR0.
+    <li>Gather the email addresses to which your letters are to be sent and check <a href="whitelist"><span class=font>Whitelist</span><span class=shy>&shy;</span></a> to see whether those addresses are on MARGY&rsquo;s whitelist.
+    <li>If any are <span class=i>not</span>, fill out <a href="addrequest">this form</a> or send an email to <a href="mailto:admin@margymail.com">admin@margymail.com</a>, Subject: Whitelist Addition, with those email addresses and links to official job ads <span class=i>which ask that letters be sent to those email addresses.</span>
     <li>Wait for email confirmation that the addresses have been added to the whitelist (or check the whitelist manually).
-    <li>Go to <a href="deliver">https://margymail.com/deliver</a> and enter your mailto codes and the relevant email addresses. You can also send a single letter by sending an email to <span class=i>mailto_code</span><span class=shy>&shy;</span>@margymail.com. In the body of the email, include the whitelisted email addresses to which you want that letter sent.
+    <li>Go to <a href="deliver"><span class=font>Deliver Letters</span></a> and enter your mailto codes and the relevant email addresses. You can also send a single letter by sending an email to <span class=i>mailto_code</span><span class=shy>&shy;</span>@margymail.com. In the body of the email, include the whitelisted email addresses to which you want that letter sent.
     <li>MARGY will send emails to all and only the whitelisted email addresses with your letters attached, using your keys to decrypt the files first. The body of the email will be a form letter including your name and the letter-writers&rsquo; names, and explaining that the letter has been sent by MARGY&rsquo;s secure service.
-    <li>Wait for an automated email from MARGY, confirming which email addresses your letters have been sent to.
+    <li>Wait for a confirmation email from MARGY.
 </ol>
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends "index.html" %}
 {% block contents %}
 <p class=b>Whitelist Addition Request</p>
-<p class=txt>Use this form to request that an email address be added to MARGY&rsquo;s whitelist. Please enter the email address in question along with a link to an official job ad <span class=i>that asks that letters be sent to that address.</span> Please also enter your email address if you would like to receive notifications regarding this request.</p>
+<p class=txt>Use this form to request that one or more email addresses be added to MARGY&rsquo;s whitelist. Please enter the addresses in question (separated by semicolons) along with links to official job ads <span class=i>that ask that letters be sent to those addresses.</span> Please also enter your email address if you would like to receive notifications regarding this request.</p>
 <form id=request action="/request" method="post" enctype="multipart/form-data">
-<p>Requested Email Address:<br><input class="long txtinput" type=text name="addr" id="addr" required></p>
-<p>Link to Job Ad:<br><input class="long txtinput" type=text name="ad" id="ad" required></p>
+<p>Requested Email Addresses:<br><input class="long txtinput" type=text name="addr" id="addr" required></p>
+<p>Link to Job Ads:<br><input class="long txtinput" type=text name="ad" id="ad" required></p>
 <p>Your Email Address:<br><input class="long txtinput" type=text name="reply" id="reply"></p>
 <button type="submit" name="submit" class=upbutton>Request</button>
 </form>

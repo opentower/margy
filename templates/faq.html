@@ -1,0 +1,10 @@
+{% extends "instructions.html" %}
+{% block choice %}
+<p class="txt b">FAQ</p>
+<p class="mspaced u">How do I upload a letter?</p>
+<p class=spaced>Go to <a href="https://margymail.com/upload">https://margymail.com/upload</a> or click the <span class=font>Upload a Letter</span> button above. You will be presented with a form asking you to input your name, the applicant&rsquo;s name (whom you wrote the letter for), and the applicant&rsquo;s email address, along with the letter as a PDF.</p>
+<p class="mspaced u">How do I add an address to the whitelist?</p>
+<p class=spaced>To request that one or more email addresses be added to the whitelist, fill out <a href="addrequest">this form</a> or send a message to <a href="mailto:admin@margymail.com">admin@margymail.com</a>, Subject: Whitelist Addition, with the relevant addresses and links to official job ads <span class=i>that ask that letters be sent to those addresses.</span></p>
+<p class="mspaced u">Who can read my letter?</p>
+<p class=spaced>MARGY maintains confidentiality in two ways. First, MARGY encrypts all letters as they are uploaded, so that not even MARGY&rsquo;s administrators can access them. A decryption key is generated and included as part of the mailto code sent to the applicant. <span class=i>That key is not saved anywhere else.</span> Second, MARGY only sends letters of recommendation to email addresses on its whitelist, all of which have been verified as belonging to a hiring entity. If you want to see how MARGY does things for yourself, you can check out the <a target='_blank' href="https://github.com/davidfaraci/margy">source code</a>.</p>
+{% endblock %}
