@@ -309,7 +309,7 @@ def delivery():
                 EmailUtils.rich_message('MARGY@margymail.com',mto,subject,toedutxt,toedu,data,name)
                 i += 1
             if approved and usable:
-                log.write(str(len(sentto)) + u' deliveries made to: ' + u'; '.join(approved) +  u'\r\n')
+                log.write(str(len(senttol)) + u' deliveries made to: ' + u'; '.join(approved) +  u'\r\n')
                 files = '; '.join(name)
                 sentto = '; '.join(senttol)
                 toapptxt = render_template('del_confirm.txt',recs=recs,app=applicant,cfn=files,sentto=sentto,failed='')
