@@ -1,6 +1,6 @@
 # Welcome to MARGY!
 
-MARGY is a **FREE** service for managing confidential letters of recommendation on the academic job market. We collect minimal email data, solely for debugging purposes, which is fully anonymized. (The only exception in terms of anonymity is when the system receives an automated message letting it know that an email has failed to send; in those cases, we cannot avoid seeing what email addresses were involved.)
+MARGY is a **FREE** service for managing confidential letters of recommendation on the academic job market. We collect minimal email data which is largely  anonymized. (When a delivery is made, the system logs how many letters were sent to that address, but not which letters they are. The system also logs information on failed deliveries, including missing files or metadata and non-whitelisted addresses, so that we can help address user problems. Finally, when the system receives an automated message letting it know that an email has failed to send, we cannot avoid seeing what email addresses were involved; this is the only time we can see both who sent something and to where.)
 
 Feedback on the site design or notes on functionality continue to be greatly appreciated. If you are a coder, you can also check out our source code on [GitHub](https://github.com/davidfaraci/margy).
 
@@ -22,12 +22,12 @@ If you're interested in understanding how MARGY works, you can view the source c
 - `.gitignore` tells the system which files not to share publicly (e.g., the folder with all the letters in it!)
 - `LICENSE.txt` contains a statement of MARGY's copyright
 - `README.md` contains this README
-- `encryption.py` contains the functions `letters.py` uses to encrypt files during upload and `server.py` uses to decrypt files for delivery
+- `encryption.py` contains the functions MARGY uses to encrypt files during upload and to decrypt files for delivery
 - `letters.py` contains the code for the MARGY website (more below)
 - `mailfilter.sh` anonymizes the email logs
 - `outgoing_email.py` contains the functions that `server.py` uses to send email
 - `server.py` contains the code for the MARGY email system (more below)
-- `system_mail_watcher.sh` notifies the administrators when local email is received, which usually only happens if an email failed to send. **NOTE**: This is the only system information that is not anonymous; if MARGY tries and fails to send an email, the administrators will be alerted and will see what email addresses were involved.
+- `system_mail_watcher.sh` notifies the administrators when local email is received, which usually only happens if an email failed to send.
 
 
 #### LETTERS.PY
@@ -39,7 +39,7 @@ def newletter():
     return render_template('upload.html')
 ```
 
-says that when someone goes to margymail.com/upload, the system should render the `upload.html` template (which is an extension of the `index.html` template). Most of `letters.py` is just short bits like this. The exception is `@app.route` for `/letter`, which controls uploading (when someone clicks Submit on margymail.com/upload, it triggers `/letter`). It takes the information provided by the uploader and adds it to `metadata.txt` (not public). It then creates a unique file name for the letter, encrypts it using functions from `encryption.py`, and saves it to the letters folder (also not public). It then renders appropriate templates (e.g., saying that a letter has been successfully uploaded).
+says that when someone goes to margymail.com/upload, the system should render the `upload.html` template (which is an extension of the `index.html` template). Most of `letters.py` is just short bits like this. The exception is `@app.routes` for `/letter` and `/deliver`, which respectively control uploading and web-based deliveries. In the former case, when someone clicks Submit on margymail.com/upload, it triggers `/letter`. It takes the information provided by the uploader and adds it to `metadata.txt` (not public). It then creates a unique file name for the letter, encrypts it using functions from `encryption.py`, and saves it to the letters folder (also not public). It then renders appropriate templates (e.g., saying that a letter has been successfully uploaded). In the latter case, when someone clicks Submit on margymail.com/deliver, it triggers `/delivery`. It then attempts to send the requested letters to the requested email addresses (assuming they are whitelisted), following a procedure similar to that used by `server.py` (described below).
 
 
 #### SERVER.PY
@@ -49,7 +49,7 @@ When an email comes in, `process_message` does the following:
 
 1. Reads the email (including body and headers) and saves that information for future use.
 2. Checks the body of the message for email addresses.
-3. If the email is directed to abuse@, postmaster@, admin@ or MARGY@margymail.com, it forwards it to me.
+3. If the email is directed to certain special addresses (e.g., admin@ or MARGY@), it forwards it to me.
 4. Checks whether the system has metadata associated with the incoming mailto code. If not, it sends an error reply.
 5. Decrypts the file associated with that metadata (using the key found in the mailto code) and flags it for attachment.
 6. Checks the email addresses from the incoming email against `whitelist.txt`. If there are no matches, it sends an error reply.
