@@ -46,6 +46,11 @@ table.topbar td {
     margin: 0 0 0 0;
 }
 
+table.admin td {
+    vertical-align: top;
+    padding-right: 50px;
+}
+
 table.delivery {
     padding: 0;
     margin: 0;
@@ -131,6 +136,7 @@ button:focus {outline:0;}
 .txtinput { margin: .1em 0 .5em 0; font-size: 1.1em; }
 .medium { width: 300px; }
 .long { width: 500px; }
+.short { width: 50px; }
 .less { margin: 0 0 .5em 0; }
 .txt { margin:0 0 1em 0; text-align: justify; }
 .txt ol { margin:.25em 0 .5em 0; }

@@ -1,14 +1,20 @@
 {% extends "index.html" %}
 {% block contents %}
 <p class=b>Administrators Only</p>
+<table class=admin>
+    <tr><td>
 <form id=unsub action="/wladd" method="post" enctype="multipart/form-data">
 <p>Add Address to Whitelist:<br>
-    <input class=txtinput type=text name="addr" id="addr" required></p>
-<button type="submit" class=upbutton>Add</button>
+    <input class=txtinput type=text name="addr" id="addr" required><br>
+<button type="submit" class=upbutton>Add</button></p>
 </form>
-<br><br>
-<p class=u>Unsubscribed:</p>
-<p class=wl>{{ unsub }}</p><br>
-{% block status %}
+    </td>
+    <td>
+<form id=tail action="/tail" method="post" enctype="multipart/form-data">
+<p>Tail File, Chars: <input class=txtinput type=text name="file" id="file" required> <input class='short txtinput' type=text value='1000' name="n" id="n"><br>
+    <button type="submit" class=upbutton>Tail</button></p>
+</td></tr></table>
+<br>
+{% block output %}
 {% endblock %}
 {% endblock %}

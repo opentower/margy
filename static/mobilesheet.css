@@ -12,6 +12,11 @@ header{
 	line-height:60px;
 }
 
+table.admin td {
+    vertical-align: top;
+    padding-right: 50px;
+}
+
 .hamburger{
     background:none;
     position:absolute;
@@ -149,6 +154,9 @@ label.browse input[type="file"] {
 .red { color: red; }
 .green { color: green; }
 .blue { color: blue; }
+.medium { width: 200px; }
+.long { width: 300px; }
+.short { width: 100px; }
 .credits { text-align: center; }
 .keys { font-family: typekeys; font-size: 1.1em; }
 .footer { font-size: 1.5em; text-align: right; }

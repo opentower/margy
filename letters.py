@@ -8,6 +8,7 @@ import PyPDF2
 import StringIO
 import io, os, sys, re
 import datetime
+import os.path
 from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__, static_url_path='')
@@ -87,9 +88,20 @@ def get_pw(username):
 @app.route('/admin') #admin only
 @auth.login_required
 def admin():
-    with io.open('unsubscribers.txt', 'r', encoding="utf-8") as f:
-        unsub = f.read()
-    return render_template('admin.html',unsub=unsub)
+    return render_template('admin.html')
+
+@app.route('/tail', methods=['POST']) #admin Only
+def tail():
+    if request.method == 'POST':
+        fi = request.form['file']
+        if os.path.isfile(fi):
+            n = int(request.form['n'])
+            le = io.open(fi, 'r', encoding='utf-8')
+            taildata = le.read()[-n:]
+            le.close()
+        else:
+            taildata = "No such file."
+        return render_template('tail.html',taildata=taildata)
 
 @app.route('/wladd', methods=['POST']) #adds addresses to whitelist (admin only, password protected)
 def wladd():
@@ -98,7 +110,7 @@ def wladd():
         f = io.open('static/whitelist.txt', 'a', encoding="utf-8")
         f.write(addr.decode('utf-8') + u'\r\n')
         f.close()
-        return render_template('wladd.html',addr=addr)
+        return render_template('wladd.html')
 
 @app.route('/unsub', methods=['POST']) #adds unsubscriber emails to unsubscriber list and removes from whitelist
 def unsub():
