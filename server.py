@@ -171,7 +171,11 @@ class MargySMTPServer(smtpd.SMTPServer):
         matches = [] #initialize matches for accumulation
         for part in msg.walk(): #get matches only from text/html and text/plain parts of an email
             if part.get_content_type() in ['text/plain','text/html']:
-		decoded = part.get_payload(decode=True).decode('utf-8')
+		charset = part.get_content_charset()
+		if charset is None:
+			decoded = part.get_payload(decode=True).decode('utf-8')
+		else:
+			decoded = unicode(part.get_payload(decode=True), str(charset), "ignore")
                 matches = matches + re.findall(email,decoded)
         matches = list(set(matches)) #deduplicate match list
         if 'reply-to' in msg: replyadr = msg['reply-to']
