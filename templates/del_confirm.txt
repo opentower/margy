@@ -1,9 +1,9 @@
 MARGY has made the following delivery:
 
-File Names: {{ cfn }}
 Letter-Writers: {{ recs }}
 Applicants: {{ app }}
 Recipients: {{ sentto }}
+File Names: {{ cfn }}
 {% if failed != "" %}
 Not Sent: {{ failed }}
 {% endif %}
