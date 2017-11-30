@@ -5,7 +5,7 @@
 <p>No deliveries made.</p>
 {% else %}
 <p>Deliveries made to whitelisted addresses <span class=hl>{{ sentto }}</span> with letters from <span class=hl>{{ recs }}</span> for applicant <span class=hl>{{ app }}</span>.</p>
-<p>Confirmation sent to <span class=hl>{{ aem }}</span>{% if addr == '' %}.</p>{% else %}and <span class=hl>{{ addr }}</span>.</p>{% endif %}
+<p>Confirmation sent to <span class=hl>{{ aem }}</span>{% if addr == '' or addr == aem %}.</p>{% else %} and <span class=hl>{{ addr }}</span>.</p>{% endif %}
 {% endif %}
 
 {% if failed or nmd or nf or corrupt %}

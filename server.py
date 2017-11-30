@@ -165,18 +165,18 @@ class MargySMTPServer(smtpd.SMTPServer):
         now = datetime.datetime.now().strftime("%m.%d.%Y %H:%M:%S")
         log = io.open('serverlog.txt', 'a', encoding="utf-8")
         log.write(u'\r\n' + now + u'\r\n')
-        print 'Receiving...'
+        print '\r\n' + now  + '\r\nReceiving...'
         parser = Parser()
         msg = parser.parsestr(data)
         matches = [] #initialize matches for accumulation
         for part in msg.walk(): #get matches only from text/html and text/plain parts of an email
             if part.get_content_type() in ['text/plain','text/html']:
-		charset = part.get_content_charset()
-		if charset is None:
-			decoded = part.get_payload(decode=True).decode('utf-8')
-		else:
-			decoded = unicode(part.get_payload(decode=True), str(charset), "ignore")
-                matches = matches + re.findall(email,decoded)
+            	charset = part.get_content_charset()
+            	if charset is None:
+            		decoded = unicode(part.get_payload(decode=True),'latin1','replace')
+            	else:
+            		decoded = unicode(part.get_payload(decode=True), str(charset), 'replace')
+		matches = matches + re.findall(email,decoded)
         matches = list(set(matches)) #deduplicate match list
         if 'reply-to' in msg: replyadr = msg['reply-to']
         else: replyadr = str(mailfrom).decode('utf-8') #checks for a reply-to address; if not present, assigns sender as reply-to address
@@ -217,7 +217,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                             mdata = 'empty' #set in case there is no metadata for the filecode
                             for line in f: #checks whether the filecode matches the first entry on each line of metadata and, if so, scrapes the line
                                 if filecode.lower() == line.rstrip().lower()[:len(filecode)]:
-                                    mdata = line #
+                                    mdata = line
                                     break
                             f.close()
                             if mdata == 'empty': #deals with cases where there is no metadata for the filecode
@@ -225,7 +225,7 @@ class MargySMTPServer(smtpd.SMTPServer):
                             else:
                                 array = mdata.split() #creates a list out of the relevant line of metadata
                                 cfn = array[0] + '.pdf' #assigns the first item in the metadata list as the file name (should be the same as filecode)
-                                cfnl = [cfn]
+                                cfnl = [cfn] #creates a list with just that one element, to compensate for changes due to new web delivery system
                                 path = 'letters/' + cfn + '.aes' #the path to the file to be attached should be letters/[value of cfn].aes
                                 if not os.path.isfile(path): #checks whether there is such a file
                                     no_such_file_handler(replyadr,cfn,log)

@@ -8,6 +8,6 @@ File Names: {{ cfn }}
 Not Sent: {{ failed }}
 {% endif %}
 
-Confirmation emails have been sent to the applicant and to the email address that sent the request (if different). For questions, or if you believe you received this email in error, please contact admin@margymail.com.
+Confirmation emails have been sent to the applicant and the requester (if different). For questions, or if you believe you received this email in error, please contact admin@margymail.com.
 
 MARGY
