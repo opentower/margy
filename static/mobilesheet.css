@@ -17,6 +17,16 @@ table.admin td {
     padding-right: 50px;
 }
 
+table.delivery {
+    padding: 0;
+    margin: 0;
+}
+
+table.delivery td {
+    padding: 0 15px 0 0;
+    margin: 0;
+}
+
 .hamburger{
     background:none;
     position:absolute;
@@ -154,7 +164,7 @@ label.browse input[type="file"] {
 .red { color: red; }
 .green { color: green; }
 .blue { color: blue; }
-.medium { width: 200px; }
+.medium { width: 100%; }
 .long { width: 300px; }
 .short { width: 100px; }
 .credits { text-align: center; }
