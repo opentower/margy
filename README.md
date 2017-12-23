@@ -8,7 +8,7 @@ For bugs/specific issues, please create an "Issue" on GitHub. Go to [https://git
 
 For comments and general suggestions (or if you find a bug but would prefer not to deal with the Issue system), send an email to [admin@margymail.com](mailto:admin@margymail.com).
 
-#### Anonymity
+### Anonymity
 User privacy is extremely important to us. We endeavor to strike the optimal balance between user anonymity, system efficiency, and our ability to help users when something goes wrong. In addition to what is publicly available, we have access to:
 
 * metadata and filenames that show who has uploaded letters for whom\*
