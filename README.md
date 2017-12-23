@@ -9,7 +9,19 @@ For bugs/specific issues, please create an "Issue" on GitHub. Go to [https://git
 For comments and general suggestions (or if you find a bug but would prefer not to deal with the Issue system), send an email to [admin@margymail.com](mailto:admin@margymail.com).
 
 #### Anonymity
-MARGY logs minimal data which is largely anonymized. When a delivery is made, the system logs how many letters were sent to what addresses, but not which letters were sent. The system also logs information on failed deliveries, including missing files or metadata and non-whitelisted addresses, so that we can help address user problems. Finally, when the system receives an automated message letting it know that an email has failed to send, we cannot avoid logging what email addresses were involved; this is the only time we log both who sent something and to where.
+User privacy is extremely important to us. We endeavor to strike the optimal balance between user anonymity, system efficiency, and our ability to help users when something goes wrong. In addition to what is publicly available, we have access to:
+
+* metadata and filenames that show who has uploaded letters for whom\*
+* the email blastlist
+* addresses suspected of spamming the system
+* addresses removed from the whitelist through our online form
+* a host of anonymized log data\*\*
+
+We **do not** have access to the content of the letters. We **do not** have access to which letters are sent where, with two exceptions explained below.\*\*
+
+\*This is obviously the most sensitive information we have access to. To remove access, we would have to have the system encrypt and decrypt the metadata each time it reads it, which would both slow the system down and make it much harder for us to help when problems arise (it would be even harder to avoid having access to filenames). Given that many people make their references publicly available on their CVs anyway, we suspect most will not object to our having access to this information. If you *do* have concerns, please don't hesitate to get in touch.
+
+\*\*When a delivery is made, the system logs how many letters were sent to what addresses, but not which letters were sent. The system also logs limited information on failed deliveries, including missing files or metadata and non-whitelisted addresses, so we can help address user issues. Finally, when the system receives an automated message letting it know that an email has failed to send, we cannot avoid logging what email addresses were involved. This last is the *only time* complete delivery information is logged. However, in rare cases we may be able to *infer* such information from the logs—e.g., if a user misspells 3 mailto codes, then moments later the system makes 3 deliveries to a whitelisted address.
 
 
 -----
