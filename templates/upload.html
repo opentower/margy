@@ -8,6 +8,7 @@
         <input class=txtinput type=text name="app_fname" id="app_fname" required>&nbsp;&nbsp;<input class=txtinput type=text name="app_lname" id="app_lname" required></p>
     <p>Applicant&rsquo;s Email Address (for upload and delivery notifications only; the system will not send the letter itself to this address):<br><input class=txtinput type=email name="app_email" id="app_email" required></p>
     <p>Confirm Applicant&rsquo;s Email Address:<br><input class=txtinput type=email name="app_emailc" id="app_emailc" required></p>
+    <p>Optional Note to Applicant:<br><input class='txtinput long' type=text name="app_note" id="app_note"></p>
     {% if request.MOBILE %}
         <p><label class=browse><input type="file" name="letter" id="letter" required><span>Attach File</span></label><p>
     {% else %}

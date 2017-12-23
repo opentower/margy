@@ -6,4 +6,7 @@ If you have not already done so, we also recommend that you join the MARGY email
 
 For questions, or if you believe you received this email in error, please contact admin@margymail.com.
 
+{% if note|length > 0 %}Note from Letter-Writer:
+{{ note }}
+{% endif %}
 MARGY

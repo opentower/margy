@@ -172,6 +172,7 @@ def upload_letter():
         aln = request.form['app_lname'].lstrip().rstrip() #Applicant's Last Name
         aem = request.form['app_email'].lstrip().rstrip() #Applicant's Email Address
         aec = request.form['app_emailc'].lstrip().rstrip() #Applicant's Email Address (confirmed)
+        note = request.form['app_note'] #Optional note to applicant
         rfncode = rfn.replace(" ", "_") #Replaces spaces with underscores in names
         rlncode = rln.replace(" ", "_")
         afncode = afn.replace(" ", "_")
@@ -198,10 +199,11 @@ def upload_letter():
                 a = io.open('metadata.txt', 'a', encoding="utf-8")
                 a.write(metadata) #writes the metadata to metadata.txt
                 a.close()
-                txtbody = render_template('rec_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,aem=aem,codename=mailto)
-                htmlbody = render_template('rec_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,aem=aem,codename=mailto)
+                txtbody = render_template('rec_confirm.txt',rfn=rfn,rln=rln,afn=afn,aln=aln,aem=aem,codename=mailto,note=note)
+                htmlbody = render_template('rec_confirm.html',rfn=rfn,rln=rln,afn=afn,aln=aln,aem=aem,codename=mailto,note=note)
                 EmailUtils.rich_message('MARGY@margymail.com',aem,'Letter Received',txtbody,htmlbody) #sends an email to the applicant with their mailto code
-                return render_template('success.html',aem=aem,codename=codename) #displays a success message to the uploader
+                savedas = codename + '.pdf'
+                return render_template('success.html',aem=aem,codename=codename,savedas=savedas) #displays a success message to the uploader
 
 @app.route('/delivery', methods=['POST']) # handles uploads
 def delivery():
