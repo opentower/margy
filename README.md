@@ -17,7 +17,7 @@ User privacy is extremely important to us. We endeavor to strike the optimal bal
 * addresses removed from the whitelist through our online form
 * a host of anonymized log data\*\*
 
-We **do not** have access to the content of the letters. We **do not** have access to which letters are sent where, with two exceptions explained below.\*\*
+We **do not** have access to the content of the letters. We **do not** have access to which letters are sent where, with rare exceptions explained below.\*\*
 
 \*This is obviously the most sensitive information we have access to. To remove access, we would have to have the system encrypt and decrypt the metadata each time it reads it, which would both slow the system down and make it much harder for us to help when problems arise (it would be even harder to avoid having access to filenames). Given that many people make their references publicly available on their CVs anyway, we suspect most will not object to our having access to this information. If you *do* have concerns, please don't hesitate to get in touch.
 
