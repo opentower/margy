@@ -346,7 +346,9 @@ def delivery():
 
         nmd = '; '.join(unusable).decode('utf-8')
         if nmd != '':
-            log.write(u'Missing metadata: ' + nmd + u'\r\n')
-
+            if 'margymail' in nmd:
+                log.write(u'Missing metadata: anonymized @margymail input\r\n')
+            else:
+                log.write(u'Missing metadata: ' + nmd + u'\r\n')
         log.close()
         return render_template('results.html',recs=recs,app=applicant,corrupt=corrupt,failed=nwl,nmd=nmd,nf=nf,sentto=sentto,aem=aem,addr=addr)
