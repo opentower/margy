@@ -1,4 +1,8 @@
 {% extends "upload.html" %}
 {% block status %}
-<span class="b red">Upload Failure &mdash; File too big!</span>
+<script>
+window.onload = function() {
+    alert('Upload Failure — File too big!')
+};
+</script>
 {% endblock %}

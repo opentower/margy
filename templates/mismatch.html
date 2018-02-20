@@ -1,4 +1,8 @@
 {% extends "upload.html" %}
 {% block status %}
-<span class="b red">Email addresses don&rsquo;t match!</span>
+<script>
+window.onload = function() {
+    alert('Email addresses don’t match!')
+};
+</script>
 {% endblock %}

@@ -1,4 +1,8 @@
 {% extends "upload.html" %}
 {% block status %}
-<span class="b green">Success! Your letter has been saved as {{ savedas }}. A confirmation email has been sent to {{ aem }}</span>.
+<script>
+window.onload = function() {
+    alert('Success! Your letter has been saved as {{ savedas }}. A confirmation email has been sent to {{ aem }}.')
+};
+</script>
 {% endblock %}

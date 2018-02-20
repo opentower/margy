@@ -1,4 +1,8 @@
-a{% extends "upload.html" %}
+{% extends "upload.html" %}
 {% block status %}
-<span class="b red">Upload Failure (perhaps that wasn&rsquo;t a PDF?)</span>
+<script>
+window.onload = function() {
+    alert('Upload Failure (perhaps that wasn’t a PDF?)')
+};
+</script>
 {% endblock %}
