@@ -1,4 +1,8 @@
 {% extends "blastlist.html" %}
 {% block status %}
-<span class="b green">{{ addr }} has been successfully removed from the list.</span>
+<script>
+window.onload = function() {
+    alert('{{ addr }} has been successfully removed from the list.')
+};
+</script>
 {% endblock %}

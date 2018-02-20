@@ -1,4 +1,8 @@
 {% extends "unsubscribe.html" %}
 {% block status %}
-<span class="b green">{{ addr }} has been successfully removed.</span>
+<script>
+window.onload = function() {
+    alert('{{ addr }} has been successfully removed.')
+};
+</script>
 {% endblock %}
